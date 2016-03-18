@@ -77,45 +77,45 @@
     describe('3. Sum Integers in Array', function() {
 
       it('should be a function', function() {
-        expect(sum).to.be.an.instanceOf(Function);
+        expect(arraySum).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        expect(typeof(sum([1,2,3,4,5,6]))).to.eql('number');
+        expect(typeof(arraySum([[1],[2,3],[[4]],5,6]))).to.eql('number');
       });
 
-      it('should return the sum of an array of non-negative integers', function() {
-        expect(sum([1,2,3,4,5,6])).to.eql(21);
-        expect(sum([12,34,56,78])).to.eql(180);
-        expect(sum([3,0,34,7,18])).to.eql(62);
+      it('should return the sum of an array with nested arrays of non-negative integers', function() {
+        expect(arraySum([[1],[2,3],[[4]],5,6])).to.eql(21);
+        expect(arraySum([[12,[[34],[56]],78]])).to.eql(180);
+        expect(arraySum([3,[0,[34,[7,[18]]]]])).to.eql(62);
       });
 
-      it('should return the sum of an array of negative integers', function() {
-        expect(sum([-1,-2,-3,-4,-5,-6])).to.eql(-21);
-        expect(sum([-12,-34,-56,-78])).to.eql(-180);
-        expect(sum([-3,-0,-34,-7,-18])).to.eql(-62);
+      it('should return the sum of an array with nested arrays of negative integers', function() {
+        expect(arraySum([[-1],[-2,-3],[[-4]],-5,-6])).to.eql(-21);
+        expect(arraySum([[-12,[[-34],[-56]],-78]])).to.eql(-180);
+        expect(arraySum([-3,[0,[-34,[-7,[-18]]]]])).to.eql(-62);
       });
 
-      it('should return the sum of an array of mixed non-negative and negative integers', function() {
-        expect(sum([1,-2,3,-4,5,-6])).to.eql(-3);
-        expect(sum([-12,34,-56,78])).to.eql(44);
-        expect(sum([3,0,-34,-7,18])).to.eql(-20);
+      it('should return the sum of an array with nested arrays of mixed non-negative and negative integers', function() {
+        expect(arraySum([[1],[-2,3],[[-4]],5,-6])).to.eql(-3);
+        expect(arraySum([[-12,[[34],[-56]],78]])).to.eql(44);
+        expect(arraySum([3,[0,[-34,[-7,[18]]]]])).to.eql(-20);
       });
 
       it('should return undefined for an empty array', function() {
-        expect(sum([])).to.eql(undefined);
+        expect(arraySum([])).to.eql(0);
       });
 
       it('should accept an array with a single integer', function() {
-        expect(sum([4])).to.eql(4);
-        expect(sum([0])).to.eql(0);
-        expect(sum([-37])).to.eql(-37);
+        expect(arraySum([4])).to.eql(4);
+        expect(arraySum([0])).to.eql(0);
+        expect(arraySum([-37])).to.eql(-37);
       });
 
       it('should not mutate the input array', function() {
-        var input = [1,2,3,4,5];
-        var result = sum(input);
-        expect(input).to.eql([1,2,3,4,5]);
+        var input = [[1],[2,3],[[4]],5,6];
+        var result = arraySum(input);
+        expect(input).to.eql([[1],[2,3],[[4]],5,6]);
       });
     });
 

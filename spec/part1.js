@@ -4,7 +4,7 @@
   describe('Exercises in Recursion in Recursion in Recursion in...', function() {
 
     describe('1. Factorial', function() {
-      
+
       it('should be a function', function() {
         expect(factorial).to.be.an.instanceOf(Function);
       });
@@ -27,77 +27,7 @@
 
 
 
-    describe('2. Greatest Common Divisor', function() {
-
-      it('should be a function', function() {
-        expect(gcd).to.be.an.instanceOf(Function);
-      });
-
-      it('should return a number', function() {
-        expect(typeof(gcd(4,36))).to.equal('number');
-      });
-
-      it('should return greatest common divisor of two positive integers', function() {
-        expect(gcd(4,36)).to.equal(4);
-        expect(gcd(24,88)).to.equal(8);
-        expect(gcd(339,17)).to.equal(1);
-        expect(gcd(126,900)).to.equal(18);
-      });
-
-      it('should return null for negative integers', function() {
-        expect(gcd(-4, 2)).to.equal(null);
-        expect(gcd(-5, 5)).to.equal(null);
-        expect(gcd(5, -5)).to.equal(null);
-        expect(gcd(7, -36)).to.equal(null);
-        expect(gcd(-10, -58)).to.equal(null);
-        expect(gcd(-92, -5)).to.equal(null);
-        // expect(gcd(0, 0)).to.equal(null);
-        // expect(gcd(0, 5)).to.equal(null);
-        // expect(gcd(5, 0)).to.equal(null);
-        // expect(gcd(-5, 0)).to.equal(null);
-        // expect(gcd(0, -5)).to.equal(null);
-      });
-    });
-
-
-
-    describe('3. Integer Range', function() {
-
-      it('should be a function', function() {
-        expect(range).to.be.an.instanceOf(Function);
-      });
-
-      it('should return an array', function() {
-        expect(Array.isArray(range(2, 7))).to.equal(true);
-      });
-
-      it('should return the integers between two numbers', function() {
-        expect(range(3,8)).to.eql([4,5,6,7]);
-        expect(range(127,131)).to.eql([128,129,130]);
-      });
-
-      it('should return empty array if no integers in range', function() {
-        expect(range(5,5)).to.eql([]);
-        expect(range(2,3)).to.eql([]);
-      });
-
-      it('should accept negative integers', function() {
-        expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
-        expect(range(-3,2)).to.eql([-2,-1,0,1]);
-        expect(range(-3,-2)).to.eql([]);
-        expect(range(-2,-2)).to.eql([]);
-      });
-
-      it('should accept starting integer that\'s larger than ending', function() {
-        expect(range(7,2)).to.eql([6,5,4,3]);
-        expect(range(3,-3)).to.eql([2,1,0,-1,-2]);
-        expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
-      });
-    });
-
-
-
-    describe('4. Sum of Integers', function() {
+    describe('2. Sum of Integers', function() {
 
       it('should be a function', function() {
         expect(sum).to.be.an.instanceOf(Function);
@@ -144,7 +74,124 @@
 
 
 
-    describe('5. Compute Exponent', function() {
+    describe('3. Sum Integers in Array', function() {
+
+      it('should be a function', function() {
+        expect(sum).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        expect(typeof(sum([1,2,3,4,5,6]))).to.eql('number');
+      });
+
+      it('should return the sum of an array of non-negative integers', function() {
+        expect(sum([1,2,3,4,5,6])).to.eql(21);
+        expect(sum([12,34,56,78])).to.eql(180);
+        expect(sum([3,0,34,7,18])).to.eql(62);
+      });
+
+      it('should return the sum of an array of negative integers', function() {
+        expect(sum([-1,-2,-3,-4,-5,-6])).to.eql(-21);
+        expect(sum([-12,-34,-56,-78])).to.eql(-180);
+        expect(sum([-3,-0,-34,-7,-18])).to.eql(-62);
+      });
+
+      it('should return the sum of an array of mixed non-negative and negative integers', function() {
+        expect(sum([1,-2,3,-4,5,-6])).to.eql(-3);
+        expect(sum([-12,34,-56,78])).to.eql(44);
+        expect(sum([3,0,-34,-7,18])).to.eql(-20);
+      });
+
+      it('should return undefined for an empty array', function() {
+        expect(sum([])).to.eql(undefined);
+      });
+
+      it('should accept an array with a single integer', function() {
+        expect(sum([4])).to.eql(4);
+        expect(sum([0])).to.eql(0);
+        expect(sum([-37])).to.eql(-37);
+      });
+
+      it('should not mutate the input array', function() {
+        var input = [1,2,3,4,5];
+        var result = sum(input);
+        expect(input).to.eql([1,2,3,4,5]);
+      });
+    });
+
+
+
+    describe('4. Check if Even', function() {
+
+      it('should be a function', function() {
+        expect(isEven).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a boolean', function() {
+        expect(typeof(isEven(5))).to.equal('boolean');
+        expect(typeof(isEven(8))).to.equal('boolean');
+        expect(typeof(isEven(-4))).to.equal('boolean');
+      });
+
+      it('should return true for even numbers', function() {
+        expect(isEven(118)).to.equal(true);
+        expect(isEven(10)).to.equal(true);
+        expect(isEven(0)).to.equal(true);
+        expect(isEven(-34)).to.equal(true);
+      });
+
+      it('should return false for odd numbers', function() {
+        expect(isEven(117)).to.equal(false);
+        expect(isEven(9)).to.equal(false);
+        expect(isEven(1)).to.equal(false);
+        expect(isEven(-33)).to.equal(false);
+      });
+
+      it('should work with negative integers', function() {
+        expect(isEven(-14)).to.equal(true);
+        expect(isEven(-81)).to.equal(false);
+      });
+    });
+
+
+
+    describe('5. Integer Range', function() {
+
+      it('should be a function', function() {
+        expect(range).to.be.an.instanceOf(Function);
+      });
+
+      it('should return an array', function() {
+        expect(Array.isArray(range(2, 7))).to.equal(true);
+      });
+
+      it('should return the integers between two numbers', function() {
+        expect(range(3,8)).to.eql([4,5,6,7]);
+        expect(range(127,131)).to.eql([128,129,130]);
+      });
+
+      it('should return empty array if no integers in range', function() {
+        expect(range(5,5)).to.eql([]);
+        expect(range(2,3)).to.eql([]);
+      });
+
+      it('should accept negative integers', function() {
+        expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
+        expect(range(-3,2)).to.eql([-2,-1,0,1]);
+        expect(range(-3,-2)).to.eql([]);
+        expect(range(-2,-2)).to.eql([]);
+      });
+
+      it('should accept starting integer that\'s larger than ending', function() {
+        expect(range(7,2)).to.eql([6,5,4,3]);
+        expect(range(3,-3)).to.eql([2,1,0,-1,-2]);
+        expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
+      });
+    });
+
+
+
+    describe('6. Compute Exponent', function() {
 
       it('should be a function', function() {
         expect(exponent).to.be.an.instanceOf(Function);
@@ -186,40 +233,6 @@
 
 
 
-    describe('6. Check if Even', function() {
-
-      it('should be a function', function() {
-        expect(isEven).to.be.an.instanceOf(Function);
-      });
-
-      it('should return a boolean', function() {
-        expect(typeof(isEven(5))).to.equal('boolean');
-        expect(typeof(isEven(8))).to.equal('boolean');
-        expect(typeof(isEven(-4))).to.equal('boolean');
-      });
-
-      it('should return true for even numbers', function() {
-        expect(isEven(118)).to.equal(true);
-        expect(isEven(10)).to.equal(true);
-        expect(isEven(0)).to.equal(true);
-        expect(isEven(-34)).to.equal(true);
-      });
-
-      it('should return false for odd numbers', function() {
-        expect(isEven(117)).to.equal(false);
-        expect(isEven(9)).to.equal(false);
-        expect(isEven(1)).to.equal(false);
-        expect(isEven(-33)).to.equal(false);
-      });
-
-      it('should work with negative integers', function() {
-        expect(isEven(-14)).to.equal(true);
-        expect(isEven(-81)).to.equal(false);
-      });
-    });
-
-
-
     describe('7. Reverse String', function() {
 
       it('should be a function', function() {
@@ -247,7 +260,7 @@
 
 
     describe('8. Palindrome', function() {
-      
+
       it('should be a function', function() {
         expect(palindrome).to.be.an.instanceOf(Function);
       });
@@ -279,7 +292,7 @@
 
 
     describe('9. Modulo', function() {
-      
+
       it('should be a function', function() {
         expect(modulo).to.be.an.instanceOf(Function);
       });
@@ -300,8 +313,86 @@
 
 
 
-    describe('10. Compare Strings', function() {
-      
+    describe('10. Multiply', function() {
+
+      it('should be a function', function() {
+        expect(modulo).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        expect(typeof(modulo(5,2))).to.equal('number');
+        expect(typeof(modulo(8,4))).to.equal('number');
+      });
+
+      it('should return the remainder of two integers', function() {
+        expect(modulo(5,2)).to.eql(1);
+        expect(modulo(17,5)).to.eql(2);
+        expect(modulo(22,6)).to.eql(4);
+        expect(modulo(20,5)).to.eql(0);
+        expect(modulo(5,5)).to.eql(0);
+      });
+    });
+
+
+
+    describe('11. Divide', function() {
+
+      it('should be a function', function() {
+        expect(modulo).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        expect(typeof(modulo(5,2))).to.equal('number');
+        expect(typeof(modulo(8,4))).to.equal('number');
+      });
+
+      it('should return the remainder of two integers', function() {
+        expect(modulo(5,2)).to.eql(1);
+        expect(modulo(17,5)).to.eql(2);
+        expect(modulo(22,6)).to.eql(4);
+        expect(modulo(20,5)).to.eql(0);
+        expect(modulo(5,5)).to.eql(0);
+      });
+    });
+
+
+
+    describe('12. Greatest Common Divisor', function() {
+
+      it('should be a function', function() {
+        expect(gcd).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        expect(typeof(gcd(4,36))).to.equal('number');
+      });
+
+      it('should return greatest common divisor of two positive integers', function() {
+        expect(gcd(4,36)).to.equal(4);
+        expect(gcd(24,88)).to.equal(8);
+        expect(gcd(339,17)).to.equal(1);
+        expect(gcd(126,900)).to.equal(18);
+      });
+
+      it('should return null for negative integers', function() {
+        expect(gcd(-4, 2)).to.equal(null);
+        expect(gcd(-5, 5)).to.equal(null);
+        expect(gcd(5, -5)).to.equal(null);
+        expect(gcd(7, -36)).to.equal(null);
+        expect(gcd(-10, -58)).to.equal(null);
+        expect(gcd(-92, -5)).to.equal(null);
+        // expect(gcd(0, 0)).to.equal(null);
+        // expect(gcd(0, 5)).to.equal(null);
+        // expect(gcd(5, 0)).to.equal(null);
+        // expect(gcd(-5, 0)).to.equal(null);
+        // expect(gcd(0, -5)).to.equal(null);
+      });
+    });
+
+
+
+    describe('13. Compare Strings', function() {
+
       it('should be a function', function() {
         expect(cmpStr).to.be.an.instanceOf(Function);
       });
@@ -324,8 +415,8 @@
 
 
 
-    describe('11. Create array from string', function() {
-      
+    describe('14. Create array from string', function() {
+
       it('should be a function', function() {
         expect(createArray).to.be.an.instanceOf(Function);
       });
@@ -344,7 +435,27 @@
 
 
 
-    describe('12a. Count key in object', function() {
+    describe('15. Reverse an array', function() {
+
+      it('should be a function', function() {
+        expect(reverseArr).to.be.an.instanceOf(Function);
+      });
+
+      it('should return an array', function() {
+        expect(Array.isArray(reverseArr([5,4,3,2,1]))).to.equal(true);
+      });
+
+      it('should return array in reversed order', function() {
+        expect(reverseArr([1,2,3,4,5])).to.eql([5,4,3,2,1]);
+        expect(reverseArr([5,4,3,2,1])).to.eql([1,2,3,4,5]);
+        expect(reverseArr([2,4,6,8])).to.eql([8,6,4,2]);
+        expect(reverseArr([8,6,4,2])).to.eql([2,4,6,8]);
+      });
+    });
+
+
+
+    describe('16. Build an array with a given value and length', function() {
 
       it('should be a function', function() {
         expect(countKeysInObj).to.be.an.instanceOf(Function);
@@ -370,7 +481,59 @@
 
 
 
-    describe('12b. Count value in object', function() {
+    describe('17. Count value in array', function() {
+
+      it('should be a function', function() {
+        expect(countKeysInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countKeysInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countKeysInObj(input, 'e')).to.eql(2);
+        expect(countKeysInObj(input, 'x')).to.eql(1);
+        expect(countKeysInObj(input, 'y')).to.eql(2);
+        expect(countKeysInObj(input, 't')).to.eql(1);
+        expect(countKeysInObj(input, 'r')).to.eql(1);
+        expect(countKeysInObj(input, 'p')).to.eql(1);
+      });
+    });
+
+
+
+    describe('18. Count key in object', function() {
+
+      it('should be a function', function() {
+        expect(countKeysInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countKeysInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countKeysInObj(input, 'e')).to.eql(2);
+        expect(countKeysInObj(input, 'x')).to.eql(1);
+        expect(countKeysInObj(input, 'y')).to.eql(2);
+        expect(countKeysInObj(input, 't')).to.eql(1);
+        expect(countKeysInObj(input, 'r')).to.eql(1);
+        expect(countKeysInObj(input, 'p')).to.eql(1);
+      });
+    });
+
+
+
+    describe('19. Count value in object', function() {
 
       it('should be a function', function() {
         expect(countValuesInObj).to.be.an.instanceOf(Function);
@@ -396,7 +559,32 @@
 
 
 
-    describe('13a. First n Fibonacci', function() {
+    describe('20. Replace keys in object', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+    describe('21. First n Fibonacci', function() {
 
       it('should be a function', function() {
         expect(fibonacci).to.be.an.instanceOf(Function);
@@ -423,7 +611,7 @@
 
 
 
-    describe('13b. Return nth Fibonacci', function() {
+    describe('22. Return nth Fibonacci', function() {
 
       it('should be a function', function() {
         expect(nthFibo).to.be.an.instanceOf(Function);
@@ -451,103 +639,237 @@
 
 
 
-    describe('14. Reverse an array', function() {
+    describe('23. Capitalize words in array', function() {
 
       it('should be a function', function() {
-        expect(reverseArr).to.be.an.instanceOf(Function);
-      });
-
-      it('should return an array', function() {
-        expect(Array.isArray(reverseArr([5,4,3,2,1]))).to.equal(true);
-      });
-
-      it('should return array in reversed order', function() {
-        expect(reverseArr([1,2,3,4,5])).to.eql([5,4,3,2,1]);
-        expect(reverseArr([5,4,3,2,1])).to.eql([1,2,3,4,5]);
-        expect(reverseArr([2,4,6,8])).to.eql([8,6,4,2]);
-        expect(reverseArr([8,6,4,2])).to.eql([2,4,6,8]);
-      });
-    });
-
-
-
-    describe('15. Binary Search', function() {
-
-      it('should be a function', function() {
-        expect(binarySearch).to.be.an.instanceOf(Function);
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        var input = [1,2,3,4,5];
-        expect(typeof(binarySearch(input, 3))).to.eql('number');
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
       });
 
-      it('should not mutate the input array', function() {
-        var input = [1,2,3,4,5];
-        var result = binarySearch(input, 4);
-        expect(input).to.eql([1,2,3,4,5]);
-      });
-
-      it('should return null if target not found', function() {
-        var primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
-        expect(binarySearch([1,2,3,4,5], 6)).to.eql(null);
-        expect(binarySearch(primes, 32)).to.eql(null);
-      });
-
-      it('should return index of target', function() {
-        var input1 = [1,2,3,4,5,6];
-        var input2 = [1,2,3,4,5,6,7];
-        var primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
-        expect(binarySearch(input1, 1)).to.eql(0);
-        expect(binarySearch(input1, 2)).to.eql(1);
-        expect(binarySearch(input1, 3)).to.eql(2);
-        expect(binarySearch(input1, 4)).to.eql(3);
-        expect(binarySearch(input1, 5)).to.eql(4);
-        expect(binarySearch(input1, 6)).to.eql(5);
-        expect(binarySearch(input2, 1)).to.eql(0);
-        expect(binarySearch(input2, 2)).to.eql(1);
-        expect(binarySearch(input2, 3)).to.eql(2);
-        expect(binarySearch(input2, 4)).to.eql(3);
-        expect(binarySearch(input2, 5)).to.eql(4);
-        expect(binarySearch(input2, 6)).to.eql(5);
-        expect(binarySearch(input2, 7)).to.eql(6);
-        expect(binarySearch(primes,19)).to.eql(7);
-        expect(binarySearch(primes,59)).to.eql(16);
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
       });
     });
 
 
 
-    // describe('16. Merge Sort', function() {
+    describe('24. Capitalize first letter of words in array', function() {
 
-    //   it('should be a function', function() {
-    //     expect(mergeSort).to.be.an.instanceOf(Function);
-    //   });
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
 
-    //   it('should return an array', function() {
-    //     var numbers = [8,2,20,1,15];
-    //     var sortedNumbers = mergeSort(numbers);
-    //     expect(Array.isArray(sortedNumbers)).to.equal(true);
-    //   });
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
 
-    //   it('should not mutate the input array', function() {
-    //     var numbers = [8,2,20,1,15];
-    //     var sortedNumbers = mergeSort(numbers);
-    //     expect(numbers).to.eql([8,2,20,1,15]);
-    //   });
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
 
-    //   it('should sort an array of numbers in order of least to greatest', function() {
-    //     var numbers = [8,2,20,1,15];
-    //     var sortedNumbers = mergeSort(numbers);
-    //     expect(sortedNumbers).to.eql([1,2,8,15,20]);
-    //   });
 
-    //   it('should be able to handle negative numbers', function() {
-    //     var numbers = [8,-2,20,1,-15];
-    //     var sortedNumbers = mergeSort(numbers);
-    //     expect(sortedNumbers).to.eql([-15,-2,1,8,20]);
-    //   });
-    // });
+
+    describe('25. Sum even numbers in nested objects', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('26. Flatten nested arrays', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('27. Eliminate consecutive duplicates', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('28. Augment each value in nested arrays', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('29. Minimize zeroes', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('30. Alternate sign', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
+
+
+
+    describe('31. Convert numbers to text', function() {
+
+      it('should be a function', function() {
+        expect(countValuesInObj).to.be.an.instanceOf(Function);
+      });
+
+      it('should return a number', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
+        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+      });
+
+      it('should return the count of the occurrences of the property', function() {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        expect(countValuesInObj(input, 'e')).to.eql(1);
+        expect(countValuesInObj(input, 'x')).to.eql(0);
+        expect(countValuesInObj(input, 'y')).to.eql(1);
+        expect(countValuesInObj(input, 't')).to.eql(0);
+        expect(countValuesInObj(input, 'r')).to.eql(2);
+        expect(countValuesInObj(input, 'p')).to.eql(0);
+      });
+    });
 
   });
 }());

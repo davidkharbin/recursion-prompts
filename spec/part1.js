@@ -29,6 +29,7 @@
         factorial = sinon.spy(factorial);
         factorial(4);
         expect(factorial.callCount).to.be.above(1);
+        factorial = originalFactorial;
       });
 
     });
@@ -78,6 +79,15 @@
         var result = sum(input);
         expect(input).to.eql([1,2,3,4,5]);
       });
+
+      it('should use recursion', function () {
+        var originalSum = sum;
+        sum = sinon.spy(sum);
+        sum([1,2,3,4,5,6]);
+        expect(sum.callCount).to.be.above(1);
+        sum = originalSum;
+      });
+
     });
 
 

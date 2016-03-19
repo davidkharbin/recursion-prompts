@@ -246,6 +246,10 @@
         expect(typeof(exponent(4,3))).to.eql('number');
       });
 
+      it("should not use complex math", function() {
+        expect(exponent.toString()).to.not.contain('Math');
+      });
+
       it('should compute exponent of non-negative integers', function() {
         expect(exponent(3,4)).to.equal(81);
         expect(exponent(12,5)).to.equal(248832);

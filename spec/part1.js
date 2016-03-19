@@ -135,6 +135,15 @@
         var result = arraySum(input);
         expect(input).to.eql([[1],[2,3],[[4]],5,6]);
       });
+
+      it('should use recursion', function () {
+        var originalArraySum = arraySum;
+        arraySum = sinon.spy(arraySum);
+        arraySum([[1],[2,3],[[4]],5,6]);
+        expect(arraySum.callCount).to.be.above(1);
+        arraySum = originalArraySum;
+      });
+
     });
 
 
@@ -169,6 +178,15 @@
         expect(isEven(-14)).to.equal(true);
         expect(isEven(-81)).to.equal(false);
       });
+
+      it('should use recursion', function () {
+        var originalIsEven = isEven;
+        isEven = sinon.spy(isEven);
+        isEven(118);
+        expect(isEven.callCount).to.be.above(1);
+        isEven = originalIsEven;
+      });
+
     });
 
 
@@ -205,6 +223,15 @@
         expect(range(3,-3)).to.eql([2,1,0,-1,-2]);
         expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
       });
+
+      it('should use recursion', function () {
+        var originalRange = range;
+        range = sinon.spy(range);
+        range(3,8);
+        expect(range.callCount).to.be.above(1);
+        range = originalRange;
+      });
+
     });
 
 
@@ -217,6 +244,10 @@
 
       it('should return a number', function() {
         expect(typeof(exponent(4,3))).to.eql('number');
+      });
+
+      it("should not use complex math", function() {
+        expect(exponent.toString()).to.not.contain('Math');
       });
 
       it('should compute exponent of non-negative integers', function() {
@@ -247,6 +278,15 @@
         expect(exponent(5,-4)).to.equal(0.0016);
         expect(exponent(2,-5)).to.equal(0.03125);
       });
+
+      it('should use recursion', function () {
+        var originalExponent = exponent;
+        exponent = sinon.spy(exponent);
+        exponent(3,4);
+        expect(exponent.callCount).to.be.above(1);
+        exponent = originalExponent;
+      });
+
     });
 
 
@@ -273,6 +313,15 @@
         var result = reverse(input);
         expect(input).to.eql('orangutan');
       });
+
+      it('should use recursion', function () {
+        var originalReverse = reverse;
+        reverse = sinon.spy(reverse);
+        reverse('orangutan');
+        expect(reverse.callCount).to.be.above(1);
+        reverse = originalReverse;
+      });
+
     });
 
 
@@ -305,6 +354,15 @@
         expect(palindrome('race caR')).to.eql(true);
         expect(palindrome('sAip puaki v iKaup Pias')).to.eql(true);
       });
+
+      it('should use recursion', function () {
+        var originalPalindrome = palindrome;
+        palindrome = sinon.spy(palindrome);
+        palindrome('saippuakivikauppias');
+        expect(palindrome.callCount).to.be.above(1);
+        palindrome = originalPalindrome;
+      });
+
     });
 
 
@@ -320,13 +378,31 @@
         expect(typeof(modulo(8,4))).to.equal('number');
       });
 
-      it('should return the remainder of two integers', function() {
-        expect(modulo(5,2)).to.eql(1);
-        expect(modulo(17,5)).to.eql(2);
-        expect(modulo(22,6)).to.eql(4);
-        expect(modulo(20,5)).to.eql(0);
-        expect(modulo(5,5)).to.eql(0);
+      it("should not use complex math", function() {
+        expect(modulo.toString()).to.not.contain('*');
+        expect(modulo.toString()).to.not.contain('/');
+        expect(modulo.toString()).to.not.contain('%');
+        expect(modulo.toString()).to.not.contain('Math');
       });
+
+      it('should return the remainder of two integers', function() {
+        expect(modulo(2, 1)).to.equal(2 % 1);
+        expect(modulo(17, 5)).to.equal(17 % 5);
+        expect(modulo(78, 453)).to.equal(78 % 453);
+        expect(modulo(-79, 82)).to.equal(-79 % 82);
+        expect(modulo(-275, -502)).to.equal(-275 % -502);
+        expect(modulo(0, 32)).to.equal(0 % 32);
+        expect(modulo(0, 0).toString()).to.equal('NaN');
+      });
+
+      it('should use recursion', function () {
+        var originalModulo = modulo;
+        modulo = sinon.spy(modulo);
+        modulo(5,2);
+        expect(modulo.callCount).to.be.above(1);
+        modulo = originalModulo;
+      });
+
     });
 
 
@@ -334,21 +410,39 @@
     describe('10. Multiply', function() {
 
       it('should be a function', function() {
-        expect(modulo).to.be.an.instanceOf(Function);
+        expect(multiply).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        expect(typeof(modulo(5,2))).to.equal('number');
-        expect(typeof(modulo(8,4))).to.equal('number');
+        expect(typeof(multiply(5,2))).to.equal('number');
+        expect(typeof(multiply(8,4))).to.equal('number');
       });
 
-      it('should return the remainder of two integers', function() {
-        expect(modulo(5,2)).to.eql(1);
-        expect(modulo(17,5)).to.eql(2);
-        expect(modulo(22,6)).to.eql(4);
-        expect(modulo(20,5)).to.eql(0);
-        expect(modulo(5,5)).to.eql(0);
+      it("should not use complex math", function() {
+        expect(multiply.toString()).to.not.contain('*');
+        expect(multiply.toString()).to.not.contain('/');
+        expect(multiply.toString()).to.not.contain('%');
+        expect(multiply.toString()).to.not.contain('Math');
       });
+
+      it('should return the product of two integers', function() {
+        expect(multiply(2, 1)).to.equal(2 * 1);
+        expect(multiply(17, 5)).to.equal(17 * 5);
+        expect(multiply(78, 453)).to.equal(78 * 453);
+        expect(multiply(-79, 82)).to.equal(-79 * 82);
+        expect(multiply(-275, -502)).to.equal(-275 * -502);
+        expect(multiply(0, 32)).to.equal(0 * 32);
+        expect(multiply(0, 0)).to.equal(0 * 0);
+      });
+
+      it('should use recursion', function () {
+        var originalMultiply = multiply;
+        multiply = sinon.spy(multiply);
+        multiply(8,4);
+        expect(multiply.callCount).to.be.above(1);
+        multiply = originalMultiply;
+      });
+
     });
 
 
@@ -356,21 +450,39 @@
     describe('11. Divide', function() {
 
       it('should be a function', function() {
-        expect(modulo).to.be.an.instanceOf(Function);
+        expect(divide).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        expect(typeof(modulo(5,2))).to.equal('number');
-        expect(typeof(modulo(8,4))).to.equal('number');
+        expect(typeof(divide(5,2))).to.equal('number');
+        expect(typeof(divide(8,4))).to.equal('number');
       });
 
-      it('should return the remainder of two integers', function() {
-        expect(modulo(5,2)).to.eql(1);
-        expect(modulo(17,5)).to.eql(2);
-        expect(modulo(22,6)).to.eql(4);
-        expect(modulo(20,5)).to.eql(0);
-        expect(modulo(5,5)).to.eql(0);
+      it("should not use complex math", function() {
+        expect(divide.toString()).to.not.contain('*');
+        expect(divide.toString()).to.not.contain('/');
+        expect(divide.toString()).to.not.contain('%');
+        expect(divide.toString()).to.not.contain('Math');
       });
+
+      it('should return the quotient of two integers', function() {
+        expect(divide(2, 1)).to.equal(~~(2 / 1));
+        expect(divide(17, 5)).to.equal(~~(17 / 5));
+        expect(divide(78, 453)).to.equal(~~(78 / 453));
+        expect(divide(-79, 82)).to.equal(~~(-79 / 82));
+        expect(divide(-275, -582)).to.equal(~~(-275 / -582));
+        expect(divide(0, 32)).to.equal(~~(0 / 32));
+        expect(divide(0, 0).toString()).to.equal('NaN');
+      });
+
+      it('should use recursion', function () {
+        var originalDivide = divide;
+        divide = sinon.spy(divide);
+        divide(17, 5);
+        expect(divide.callCount).to.be.above(1);
+        divide = originalDivide;
+      });
+
     });
 
 

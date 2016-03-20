@@ -6,24 +6,24 @@
     describe('32. Count tags', function() {
 
       it('should be a function', function() {
-        expect(countValuesInObj).to.be.an.instanceOf(Function);
+        expect(tagCount).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
-        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
-        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+        expect(typeof(tagCount(input, 'r'))).to.equal('number');
+        expect(typeof(tagCount(input, 'e'))).to.equal('number');
+        expect(typeof(tagCount(input, 'p'))).to.equal('number');
       });
 
       it('should return the count of the occurrences of the property', function() {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(countValuesInObj(input, 'e')).to.eql(1);
-        expect(countValuesInObj(input, 'x')).to.eql(0);
-        expect(countValuesInObj(input, 'y')).to.eql(1);
-        expect(countValuesInObj(input, 't')).to.eql(0);
-        expect(countValuesInObj(input, 'r')).to.eql(2);
-        expect(countValuesInObj(input, 'p')).to.eql(0);
+        expect(tagCount(input, 'e')).to.eql(1);
+        expect(tagCount(input, 'x')).to.eql(0);
+        expect(tagCount(input, 'y')).to.eql(1);
+        expect(tagCount(input, 't')).to.eql(0);
+        expect(tagCount(input, 'r')).to.eql(2);
+        expect(tagCount(input, 'p')).to.eql(0);
       });
     });
 

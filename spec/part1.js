@@ -144,6 +144,10 @@
         expect(typeof(isEven(-4))).to.equal('boolean');
       });
 
+      it("should not use modulo", function() {
+        expect(isEven.toString()).to.not.contain('%');
+      });
+
       it('should return true for even numbers', function() {
         expect(isEven(118)).to.equal(true);
         expect(isEven(10)).to.equal(true);

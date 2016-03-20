@@ -20,7 +20,7 @@
         expect(tagCount(tag, node)).to.eql(0);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalTagCount = tagCount;
         tagCount = sinon.spy(tagCount);
         tagCount(tag, node);
@@ -73,7 +73,7 @@
         expect(binarySearch(primes,97)).to.eql(24);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalBinarySearch = binarySearch;
         binarySearch = sinon.spy(binarySearch);
         binarySearch(primes,19);
@@ -109,7 +109,7 @@
         expect(sortedNumbers).to.eql([-15,-2,1,8,20]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalMergeSort = mergeSort;
         mergeSort = sinon.spy(mergeSort);
         mergeSort(numbers);

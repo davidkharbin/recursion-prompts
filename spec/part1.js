@@ -938,27 +938,34 @@
 
 
     describe('25. Sum even numbers in nested objects', function() {
+      var obj = {
+        a: 2,
+        b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+        c: {c: {c: 2}, cc: 'ball', ccc: 5},
+        d: 1,
+        e: {e: {e: 2}, ee: 'car'}
+      };
 
       it('should be a function', function() {
         expect(nestedEvenSum).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(nestedEvenSum(input, 'r'))).to.equal('number');
-        expect(typeof(nestedEvenSum(input, 'e'))).to.equal('number');
-        expect(typeof(nestedEvenSum(input, 'p'))).to.equal('number');
+        expect(typeof(nestedEvenSum(obj))).to.equal('number');
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(nestedEvenSum(input, 'e')).to.eql(1);
-        expect(nestedEvenSum(input, 'x')).to.eql(0);
-        expect(nestedEvenSum(input, 'y')).to.eql(1);
-        expect(nestedEvenSum(input, 't')).to.eql(0);
-        expect(nestedEvenSum(input, 'r')).to.eql(2);
-        expect(nestedEvenSum(input, 'p')).to.eql(0);
+      it('should sum even numbers', function() {
+        expect(nestedEvenSum(obj)).to.eql(10);
       });
+
+      it('should use recursion', function () {
+        var originalNestedEvenSum = nestedEvenSum;
+        nestedEvenSum = sinon.spy(nestedEvenSum);
+        nestedEvenSum(obj);
+        expect(nestedEvenSum.callCount).to.be.above(1);
+        nestedEvenSum = originalNestedEvenSum;
+      });
+
     });
 
 
@@ -969,126 +976,139 @@
         expect(flatten).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(flatten(input, 'r'))).to.equal('number');
-        expect(typeof(flatten(input, 'e'))).to.equal('number');
-        expect(typeof(flatten(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(flatten([1,[2],[3,[[4]]],5]))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(flatten(input, 'e')).to.eql(1);
-        expect(flatten(input, 'x')).to.eql(0);
-        expect(flatten(input, 'y')).to.eql(1);
-        expect(flatten(input, 't')).to.eql(0);
-        expect(flatten(input, 'r')).to.eql(2);
-        expect(flatten(input, 'p')).to.eql(0);
+      it('should return flattened array', function() {
+        expect(flatten([[1],[2,3],[[4]],5,6])).to.eql([1,2,3,4,5,6]);
+        expect(flatten([[12,[[34],[56]],78]])).to.eql([12,34,56,78]);
+        expect(flatten([3,[0,[34,[7,[18]]]]])).to.eql([3,0,34,7,18]);
       });
+
+      it('should use recursion', function () {
+        var originalFlatten = flatten;
+        flatten = sinon.spy(flatten);
+        flatten([3,[0,[34,[7,[18]]]]]);
+        expect(flatten.callCount).to.be.above(1);
+        flatten = originalFlatten;
+      });
+
     });
 
 
 
     describe('27. Eliminate consecutive duplicates', function() {
+      var input1 = [1,2,2,3,4,4,5,5,5];
+      var input2 = [1,2,2,3,4,4,2,5,5,5,4,4];
 
       it('should be a function', function() {
         expect(compress).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(compress(input, 'r'))).to.equal('number');
-        expect(typeof(compress(input, 'e'))).to.equal('number');
-        expect(typeof(compress(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(compress(input1))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(compress(input, 'e')).to.eql(1);
-        expect(compress(input, 'x')).to.eql(0);
-        expect(compress(input, 'y')).to.eql(1);
-        expect(compress(input, 't')).to.eql(0);
-        expect(compress(input, 'r')).to.eql(2);
-        expect(compress(input, 'p')).to.eql(0);
+      it('should remove consecutive duplicates', function() {
+        expect(compress(input1)).to.eql([1,2,3,4,5]);
+        expect(compress(input2)).to.eql([1,2,3,4,2,5,4]);
       });
+
+      it('should use recursion', function () {
+        var originalCompress = compress;
+        compress = sinon.spy(compress);
+        compress(input2);
+        expect(compress.callCount).to.be.above(1);
+        compress = originalCompress;
+      });
+
     });
 
 
 
-    describe('28. Augment each value in nested arrays', function() {
+    describe('28. Augment each element in nested arrays', function() {
 
       it('should be a function', function() {
         expect(augmentElements).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(augmentElements(input, 'r'))).to.equal('number');
-        expect(typeof(augmentElements(input, 'e'))).to.equal('number');
-        expect(typeof(augmentElements(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(augmentElements([[],[3],[7]], 5))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(augmentElements(input, 'e')).to.eql(1);
-        expect(augmentElements(input, 'x')).to.eql(0);
-        expect(augmentElements(input, 'y')).to.eql(1);
-        expect(augmentElements(input, 't')).to.eql(0);
-        expect(augmentElements(input, 'r')).to.eql(2);
-        expect(augmentElements(input, 'p')).to.eql(0);
+      it('should augment each element with given value', function() {
+        expect(augmentElements([[],[3],[7]], 5)).to.eql([[5],[3,5],[7,5]]);
+        expect(augmentElements([[],[3],[7]], null)).to.eql([[null],[3,null],[7,null]]);
+        expect(augmentElements([[],[3],[7]], '')).to.eql([[''],[3,''],[7,'']]);
       });
+
+      it('should use recursion', function () {
+        var originalAugElements = augmentElements;
+        augmentElements = sinon.spy(augmentElements);
+        augmentElements([[],[3],[7]], 5);
+        expect(augmentElements.callCount).to.be.above(1);
+        augmentElements = originalAugElements;
+      });
+
     });
 
 
 
     describe('29. Minimize zeroes', function() {
+      var input1 = [2,0,0,0,1,4];
+      var input2 = [2,0,0,0,1,0,0,4];
 
       it('should be a function', function() {
         expect(minimizeZeroes).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(minimizeZeroes(input, 'r'))).to.equal('number');
-        expect(typeof(minimizeZeroes(input, 'e'))).to.equal('number');
-        expect(typeof(minimizeZeroes(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(minimizeZeroes(input1))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(minimizeZeroes(input, 'e')).to.eql(1);
-        expect(minimizeZeroes(input, 'x')).to.eql(0);
-        expect(minimizeZeroes(input, 'y')).to.eql(1);
-        expect(minimizeZeroes(input, 't')).to.eql(0);
-        expect(minimizeZeroes(input, 'r')).to.eql(2);
-        expect(minimizeZeroes(input, 'p')).to.eql(0);
+      it('should remove excess zeroes', function() {
+        expect(minimizeZeroes(input1)).to.eql([2,0,1,4]);
+        expect(minimizeZeroes(input2)).to.eql([2,0,1,0,4]);
       });
+
+      it('should use recursion', function () {
+        var originalMinZeroes = minimizeZeroes;
+        minimizeZeroes = sinon.spy(minimizeZeroes);
+        minimizeZeroes(input1);
+        expect(minimizeZeroes.callCount).to.be.above(1);
+        minimizeZeroes = originalMinZeroes;
+      });
+
     });
 
 
 
     describe('30. Alternate sign', function() {
+      var input1 = [2,7,8,3,1,4];
+      var input2 = [-2,-7,8,3,-1,4];
 
       it('should be a function', function() {
         expect(alternateSign).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(alternateSign(input, 'r'))).to.equal('number');
-        expect(typeof(alternateSign(input, 'e'))).to.equal('number');
-        expect(typeof(alternateSign(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(alternateSign(input1))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(alternateSign(input, 'e')).to.eql(1);
-        expect(alternateSign(input, 'x')).to.eql(0);
-        expect(alternateSign(input, 'y')).to.eql(1);
-        expect(alternateSign(input, 't')).to.eql(0);
-        expect(alternateSign(input, 'r')).to.eql(2);
-        expect(alternateSign(input, 'p')).to.eql(0);
+      it('should remove excess zeroes', function() {
+        expect(alternateSign(input1)).to.eql([2,-7,8,-3,1,-4]);
+        expect(alternateSign(input2)).to.eql([2,-7,8,-3,1,-4]);
       });
+
+      it('should use recursion', function () {
+        var originalAltSign = alternateSign;
+        alternateSign = sinon.spy(alternateSign);
+        alternateSign(input1);
+        expect(alternateSign.callCount).to.be.above(1);
+        alternateSign = originalAltSign;
+      });
+
     });
 
 
@@ -1099,22 +1119,23 @@
         expect(numToText).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(numToText(input, 'r'))).to.equal('number');
-        expect(typeof(numToText(input, 'e'))).to.equal('number');
-        expect(typeof(numToText(input, 'p'))).to.equal('number');
+      it('should return a string', function() {
+        expect(typeof(numToText("I have 5 dogs and 6 ponies"))).to.equal('string');
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(numToText(input, 'e')).to.eql(1);
-        expect(numToText(input, 'x')).to.eql(0);
-        expect(numToText(input, 'y')).to.eql(1);
-        expect(numToText(input, 't')).to.eql(0);
-        expect(numToText(input, 'r')).to.eql(2);
-        expect(numToText(input, 'p')).to.eql(0);
+      it('should convert single digits to their word equivalent', function() {
+        expect(numToText("I have 5 dogs and 6 ponies")).to.eql("I have five dogs and six ponies");
+        expect(numToText("It takes 3 men to screw in 1 light bulb")).to.eql("It takes three men to screw in one light bulb");
       });
+
+      it('should use recursion', function () {
+        var originalNumToText = numToText;
+        numToText = sinon.spy(numToText);
+        numToText("I have 5 dogs and 6 ponies");
+        expect(numToText.callCount).to.be.above(1);
+        numToText = originalNumToText;
+      });
+
     });
 
   });

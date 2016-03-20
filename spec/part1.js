@@ -770,7 +770,6 @@
 
       it('should return object containing renamed keys', function() {
         var input  = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}}, 'y':'e'};
-        var output = {'f': {'x':'y'}, 't':{'r': {'f':'r'}, 'p': {'y':'r'}}, 'y':'e'};
 
         replaceKeysInObj(input, 'e', 'f');
 

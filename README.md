@@ -1,2 +1,2 @@
-# recursion-prompts
-Repository of prompts to be solved using recursion
+# Recursion Prompts
+- Repository of prompts to be solved using recursion

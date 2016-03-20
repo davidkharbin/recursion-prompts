@@ -20,7 +20,7 @@
         expect(factorial(-5)).to.equal(null);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalFactorial = factorial;
         factorial = sinon.spy(factorial);
         factorial(4);
@@ -72,7 +72,7 @@
         expect(input).to.eql([1,2,3,4,5]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalSum = sum;
         sum = sinon.spy(sum);
         sum([1,2,3,4,5,6]);
@@ -124,7 +124,7 @@
         expect(input).to.eql([[1],[2,3],[[4]],5,6]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalArraySum = arraySum;
         arraySum = sinon.spy(arraySum);
         arraySum([[1],[2,3],[[4]],5,6]);
@@ -163,7 +163,7 @@
         expect(isEven(-81)).to.equal(false);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalIsEven = isEven;
         isEven = sinon.spy(isEven);
         isEven(118);
@@ -204,7 +204,7 @@
         expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalRange = range;
         range = sinon.spy(range);
         range(3,8);
@@ -255,7 +255,7 @@
         expect(exponent(2,-5)).to.equal(0.03125);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalExponent = exponent;
         exponent = sinon.spy(exponent);
         exponent(3,4);
@@ -286,7 +286,7 @@
         expect(input).to.eql('orangutan');
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalReverse = reverse;
         reverse = sinon.spy(reverse);
         reverse('orangutan');
@@ -323,7 +323,7 @@
         expect(palindrome('sAip puaki v iKaup Pias')).to.eql(true);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalPalindrome = palindrome;
         palindrome = sinon.spy(palindrome);
         palindrome('saippuakivikauppias');
@@ -359,7 +359,7 @@
         expect(modulo(0, 0).toString()).to.equal('NaN');
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalModulo = modulo;
         modulo = sinon.spy(modulo);
         modulo(5,2);
@@ -395,7 +395,7 @@
         expect(multiply(0, 0)).to.equal(0 * 0);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalMultiply = multiply;
         multiply = sinon.spy(multiply);
         multiply(8,4);
@@ -431,7 +431,7 @@
         expect(divide(0, 0).toString()).to.equal('NaN');
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalDivide = divide;
         divide = sinon.spy(divide);
         divide(17, 5);
@@ -470,7 +470,7 @@
         // expect(gcd(0, -5)).to.equal(null);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalGcd = gcd;
         gcd = sinon.spy(gcd);
         gcd(17, 5);
@@ -499,7 +499,7 @@
         expect(compareStr('big dog', 'big dog')).to.eql(true);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCompareStr = compareStr;
         compareStr = sinon.spy(compareStr);
         compareStr('house', 'houses');
@@ -524,7 +524,7 @@
         expect(createArray('i')).to.eql(['i']);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCreateArray = createArray;
         createArray = sinon.spy(createArray);
         createArray('hello');
@@ -549,7 +549,7 @@
         expect(reverseArr([8,6,4,2])).to.eql([2,4,6,8]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalReverseArr = reverseArr;
         reverseArr = sinon.spy(reverseArr);
         reverseArr([5,4,3,2,1]);
@@ -578,7 +578,7 @@
         expect(buildList(5+5, 3)).to.eql([10,10,10]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalBuildList = buildList;
         buildList = sinon.spy(buildList);
         buildList(2,7);
@@ -608,7 +608,7 @@
         // expect(countOccurrence(['',7,null,0,NaN,'0',false], NaN)).to.eql(1);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCountOccurrence = countOccurrence;
         countOccurrence = sinon.spy(countOccurrence);
         countOccurrence([2,7,4,4,1,4], 4);
@@ -638,7 +638,7 @@
         expect(countKeysInObj(input, 'p')).to.eql(1);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCountKeysInObj = countKeysInObj;
         countKeysInObj = sinon.spy(countKeysInObj);
         countKeysInObj(input, 'e');
@@ -668,7 +668,7 @@
         expect(countValuesInObj(input, 'p')).to.eql(0);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCountValuesInObj = countValuesInObj;
         countValuesInObj = sinon.spy(countValuesInObj);
         countValuesInObj(input, 'r');
@@ -717,7 +717,7 @@
         expect(input.t.p.hasOwnProperty('y')).to.equal(true);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         var originalReplaceKeysInObj = replaceKeysInObj;
         replaceKeysInObj = sinon.spy(replaceKeysInObj);
@@ -749,7 +749,7 @@
         expect(fibonacci(-7)).to.equal(null);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalFibonacci = fibonacci;
         fibonacci = sinon.spy(fibonacci);
         fibonacci(5);
@@ -782,7 +782,7 @@
         expect(nthFibo(-7)).to.equal(null);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalNthFibo = nthFibo;
         nthFibo = sinon.spy(nthFibo);
         nthFibo(5);
@@ -805,7 +805,7 @@
         expect(capitalizeWords(["ceci","n'est","pas","une","pipe"])).to.eql(["CECI", "N'EST", "PAS", "UNE", "PIPE"]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCapitalizeWords = capitalizeWords;
         capitalizeWords = sinon.spy(capitalizeWords);
         capitalizeWords(["ceci","n'est","pas","une","pipe"]);
@@ -828,7 +828,7 @@
         expect(capitalizeFirst(["ceci","n'est","pas","une","pipe"])).to.eql(["Ceci", "N'est", "Pas", "Une", "Pipe"]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCapitalizeFirst = capitalizeFirst;
         capitalizeFirst = sinon.spy(capitalizeFirst);
         capitalizeFirst(["ceci","n'est","pas","une","pipe"]);
@@ -857,7 +857,7 @@
         expect(nestedEvenSum(obj)).to.eql(10);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalNestedEvenSum = nestedEvenSum;
         nestedEvenSum = sinon.spy(nestedEvenSum);
         nestedEvenSum(obj);
@@ -881,7 +881,7 @@
         expect(flatten([3,[0,[34,[7,[18]]]]])).to.eql([3,0,34,7,18]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalFlatten = flatten;
         flatten = sinon.spy(flatten);
         flatten([3,[0,[34,[7,[18]]]]]);
@@ -906,7 +906,7 @@
         expect(compress(input2)).to.eql([1,2,3,4,2,5,4]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalCompress = compress;
         compress = sinon.spy(compress);
         compress(input2);
@@ -930,7 +930,7 @@
         expect(augmentElements([[],[3],[7]], '')).to.eql([[''],[3,''],[7,'']]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalAugElements = augmentElements;
         augmentElements = sinon.spy(augmentElements);
         augmentElements([[],[3],[7]], 5);
@@ -955,7 +955,7 @@
         expect(minimizeZeroes(input2)).to.eql([2,0,1,0,4]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalMinZeroes = minimizeZeroes;
         minimizeZeroes = sinon.spy(minimizeZeroes);
         minimizeZeroes(input1);
@@ -980,7 +980,7 @@
         expect(alternateSign(input2)).to.eql([2,-7,8,-3,1,-4]);
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalAltSign = alternateSign;
         alternateSign = sinon.spy(alternateSign);
         alternateSign(input1);
@@ -1003,7 +1003,7 @@
         expect(numToText("It takes 3 men to screw in 1 light bulb")).to.eql("It takes three men to screw in one light bulb");
       });
 
-      it('should use recursion', function () {
+      it('should use recursion by calling self', function () {
         var originalNumToText = numToText;
         numToText = sinon.spy(numToText);
         numToText("I have 5 dogs and 6 ponies");

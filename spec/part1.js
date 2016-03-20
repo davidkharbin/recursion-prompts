@@ -550,6 +550,15 @@
         expect(cmpStr('foot', '')).to.eql(false);
         expect(cmpStr('big dog', 'big dog')).to.eql(true);
       });
+
+      it('should use recursion', function () {
+        var originalCmpStr = cmpStr;
+        cmpStr = sinon.spy(cmpStr);
+        cmpStr('house', 'houses');
+        expect(cmpStr.callCount).to.be.above(1);
+        cmpStr = originalCmpStr;
+      });
+
     });
 
 
@@ -570,6 +579,15 @@
         expect(createArray('hologram')).to.eql(['h','o','l','o','g','r','a','m']);
         expect(createArray('i')).to.eql(['i']);
       });
+
+      it('should use recursion', function () {
+        var originalCreateArray = createArray;
+        createArray = sinon.spy(createArray);
+        createArray('hello');
+        expect(createArray.callCount).to.be.above(1);
+        createArray = originalCreateArray;
+      });
+
     });
 
 
@@ -590,6 +608,15 @@
         expect(reverseArr([2,4,6,8])).to.eql([8,6,4,2]);
         expect(reverseArr([8,6,4,2])).to.eql([2,4,6,8]);
       });
+
+      it('should use recursion', function () {
+        var originalReverseArr = reverseArr;
+        reverseArr = sinon.spy(reverseArr);
+        reverseArr([5,4,3,2,1]);
+        expect(reverseArr.callCount).to.be.above(1);
+        reverseArr = originalReverseArr;
+      });
+
     });
 
 
@@ -597,25 +624,32 @@
     describe('16. Build an array with a given value and length', function() {
 
       it('should be a function', function() {
-        expect(countKeysInObj).to.be.an.instanceOf(Function);
+        expect(buildList).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
-        expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
-        expect(typeof(countKeysInObj(input, 'p'))).to.equal('number');
+      it('should return an array', function() {
+        expect(Array.isArray(buildList(0,5))).to.equal(true);
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(countKeysInObj(input, 'e')).to.eql(2);
-        expect(countKeysInObj(input, 'x')).to.eql(1);
-        expect(countKeysInObj(input, 'y')).to.eql(2);
-        expect(countKeysInObj(input, 't')).to.eql(1);
-        expect(countKeysInObj(input, 'r')).to.eql(1);
-        expect(countKeysInObj(input, 'p')).to.eql(1);
+      it('should return array of given length with given value at each index', function() {
+        expect(buildList(0, 5)).to.eql([0,0,0,0,0]);
+        expect(buildList('banana', 3)).to.eql(['banana','banana','banana']);
+        expect(buildList(NaN, 4)).to.eql([NaN, NaN, NaN, NaN]);
+        expect(buildList(undefined, 1)).to.eql([undefined]);
+        expect(buildList([], 2)).to.eql([[],[]]);
+        expect(buildList({}, 4)).to.eql([{},{},{},{}]);
+        expect(buildList(true, 3)).to.eql([true,true,true]);
+        expect(buildList(5+5, 3)).to.eql([10,10,10]);
       });
+
+      it('should use recursion', function () {
+        var originalBuildList = buildList;
+        buildList = sinon.spy(buildList);
+        buildList(2,7);
+        expect(buildList.callCount).to.be.above(1);
+        buildList = originalBuildList;
+      });
+
     });
 
 
@@ -623,44 +657,51 @@
     describe('17. Count value in array', function() {
 
       it('should be a function', function() {
-        expect(countKeysInObj).to.be.an.instanceOf(Function);
+        expect(countOccurrence).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
-        expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
-        expect(typeof(countKeysInObj(input, 'p'))).to.equal('number');
+        expect(typeof(countOccurrence([2,7,4,4,1,4], 4))).to.equal('number');
+        expect(typeof(countOccurrence([2,'banana',4,4,1,'banana'], 'banana'))).to.equal('number');
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(countKeysInObj(input, 'e')).to.eql(2);
-        expect(countKeysInObj(input, 'x')).to.eql(1);
-        expect(countKeysInObj(input, 'y')).to.eql(2);
-        expect(countKeysInObj(input, 't')).to.eql(1);
-        expect(countKeysInObj(input, 'r')).to.eql(1);
-        expect(countKeysInObj(input, 'p')).to.eql(1);
+      it('should return the number of occurrences of the value', function() {
+        expect(countOccurrence([2,7,4,4,1,4], 4)).to.eql(3);
+        expect(countOccurrence([2,'banana',4,4,1,'banana'], 'banana')).to.eql(2);
+        expect(countOccurrence([undefined,7,undefined,4,1,4], undefined)).to.eql(2);
+        expect(countOccurrence(['',7,null,0,'0',false], 0)).to.eql(1);
+        expect(countOccurrence(['',7,null,0,'0',false], false)).to.eql(1);
+        expect(countOccurrence(['',7,null,0,'0',false], null)).to.eql(1);
+        expect(countOccurrence(['',7,null,0,'0',false], '')).to.eql(1);
+        // expect(countOccurrence(['',7,null,0,NaN,'0',false], NaN)).to.eql(1);
       });
+
+      it('should use recursion', function () {
+        var originalCountOccurrence = countOccurrence;
+        countOccurrence = sinon.spy(countOccurrence);
+        countOccurrence([2,7,4,4,1,4], 4);
+        expect(countOccurrence.callCount).to.be.above(1);
+        countOccurrence = originalCountOccurrence;
+      });
+
     });
 
 
 
     describe('18. Count key in object', function() {
+      var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
       it('should be a function', function() {
         expect(countKeysInObj).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
         expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
         expect(typeof(countKeysInObj(input, 'p'))).to.equal('number');
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+      it('should return the number of occurrences of the property', function() {
         expect(countKeysInObj(input, 'e')).to.eql(2);
         expect(countKeysInObj(input, 'x')).to.eql(1);
         expect(countKeysInObj(input, 'y')).to.eql(2);
@@ -668,25 +709,33 @@
         expect(countKeysInObj(input, 'r')).to.eql(1);
         expect(countKeysInObj(input, 'p')).to.eql(1);
       });
+
+      it('should use recursion', function () {
+        var originalCountKeysInObj = countKeysInObj;
+        countKeysInObj = sinon.spy(countKeysInObj);
+        countKeysInObj(input, 'e');
+        expect(countKeysInObj.callCount).to.be.above(1);
+        countKeysInObj = originalCountKeysInObj;
+      });
+
     });
 
 
 
     describe('19. Count value in object', function() {
+      var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
       it('should be a function', function() {
         expect(countValuesInObj).to.be.an.instanceOf(Function);
       });
 
       it('should return a number', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
         expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
         expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
       });
 
       it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         expect(countValuesInObj(input, 'e')).to.eql(1);
         expect(countValuesInObj(input, 'x')).to.eql(0);
         expect(countValuesInObj(input, 'y')).to.eql(1);
@@ -694,6 +743,15 @@
         expect(countValuesInObj(input, 'r')).to.eql(2);
         expect(countValuesInObj(input, 'p')).to.eql(0);
       });
+
+      it('should use recursion', function () {
+        var originalCountValuesInObj = countValuesInObj;
+        countValuesInObj = sinon.spy(countValuesInObj);
+        countValuesInObj(input, 'r');
+        expect(countValuesInObj.callCount).to.be.above(1);
+        countValuesInObj = originalCountValuesInObj;
+      });
+
     });
 
 
@@ -701,25 +759,54 @@
     describe('20. Replace keys in object', function() {
 
       it('should be a function', function() {
-        expect(countValuesInObj).to.be.an.instanceOf(Function);
+        expect(replaceKeysInObj).to.be.an.instanceOf(Function);
       });
 
-      it('should return a number', function() {
+      it('should return an object', function() {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
-        expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
-        expect(typeof(countValuesInObj(input, 'p'))).to.equal('number');
+        expect(typeof(replaceKeysInObj(input, 'r', 'a'))).to.equal('object');
+        expect(typeof(replaceKeysInObj(input, 'e', 0))).to.equal('object');
       });
 
-      it('should return the count of the occurrences of the property', function() {
-        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
-        expect(countValuesInObj(input, 'e')).to.eql(1);
-        expect(countValuesInObj(input, 'x')).to.eql(0);
-        expect(countValuesInObj(input, 'y')).to.eql(1);
-        expect(countValuesInObj(input, 't')).to.eql(0);
-        expect(countValuesInObj(input, 'r')).to.eql(2);
-        expect(countValuesInObj(input, 'p')).to.eql(0);
+      it('should return object containing renamed keys', function() {
+        var input  = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}}, 'y':'e'};
+        var output = {'f': {'x':'y'}, 't':{'r': {'f':'r'}, 'p': {'y':'r'}}, 'y':'e'};
+
+        replaceKeysInObj(input, 'e', 'f');
+
+        var keyCount = 0;
+        for (var k in input) keyCount++;
+        expect(keyCount).to.equal(3);
+
+        expect(input.e).to.equal(undefined);
+        expect(input.f.x).to.equal('y');
+        expect(input.t.r.e).to.equal(undefined);
+        expect(input.t.r.f).to.equal('r');
+        expect(input.t.p.y).to.equal('r');
+        expect(input.y).to.equal('e');
+
+        expect(input.hasOwnProperty('e')).to.equal(false);
+        expect(input.hasOwnProperty('f')).to.equal(true);
+        expect(input.hasOwnProperty('t')).to.equal(true);
+        expect(input.hasOwnProperty('y')).to.equal(true);
+
+        expect(input.t.hasOwnProperty('r')).to.equal(true);
+        expect(input.t.hasOwnProperty('p')).to.equal(true);
+
+        expect(input.t.r.hasOwnProperty('e')).to.equal(false);
+        expect(input.t.r.hasOwnProperty('f')).to.equal(true);
+        expect(input.t.p.hasOwnProperty('y')).to.equal(true);
       });
+
+      it('should use recursion', function () {
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        var originalReplaceKeysInObj = replaceKeysInObj;
+        replaceKeysInObj = sinon.spy(replaceKeysInObj);
+        replaceKeysInObj(input, 'r', 'a');
+        expect(replaceKeysInObj.callCount).to.be.above(1);
+        replaceKeysInObj = originalReplaceKeysInObj;
+      });
+
     });
 
 
@@ -746,6 +833,15 @@
         expect(fibonacci(0)).to.equal(null);
         expect(fibonacci(-7)).to.equal(null);
       });
+
+      it('should use recursion', function () {
+        var originalFibonacci = fibonacci;
+        fibonacci = sinon.spy(fibonacci);
+        fibonacci(5);
+        expect(fibonacci.callCount).to.be.above(1);
+        fibonacci = originalFibonacci;
+      });
+
     });
 
 
@@ -774,6 +870,15 @@
         expect(nthFibo(-5)).to.equal(null);
         expect(nthFibo(-7)).to.equal(null);
       });
+
+      it('should use recursion', function () {
+        var originalNthFibo = nthFibo;
+        nthFibo = sinon.spy(nthFibo);
+        nthFibo(5);
+        expect(nthFibo.callCount).to.be.above(1);
+        nthFibo = originalNthFibo;
+      });
+
     });
 
 

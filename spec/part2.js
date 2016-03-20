@@ -4,9 +4,6 @@
   describe('More Exercises in Recursion', function() {
 
     describe('32. Count tags', function() {
-      it('should be a function', function() {
-        expect(tagCount).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(tagCount(tag, node))).to.equal('number');
@@ -39,10 +36,6 @@
       var input1 = [1,2,3,4,5,6];
       var input2 = [1,2,3,4,5,6,7];
       var primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
-
-      it('should be a function', function() {
-        expect(binarySearch).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(binarySearch(input1, 3))).to.eql('number');
@@ -95,10 +88,6 @@
     describe('34. Merge Sort', function() {
       var numbers = [8,2,20,1,15];
 
-      it('should be a function', function() {
-        expect(mergeSort).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         var sortedNumbers = mergeSort(numbers);
         expect(Array.isArray(sortedNumbers)).to.equal(true);
@@ -131,4 +120,18 @@
     });
 
   });
+
+  // function checkForNativeMethods(runUnderbarFunction) {
+  //   it('should not use the native version of sort', function() {
+  //     // These spies are set up in testSupport.js
+  //     runUnderbarFunction();
+  //     expect(Array.prototype.indexOf.called).to.equal(false);
+  //     expect(Array.prototype.filter.called).to.equal(false);
+  //     expect(Array.prototype.sort.called).to.equal(false);
+  //   });
+  // }
+  //     checkForNativeMethods(function() {
+  //       mergeSort(numbers);
+  //     });
+
 }());

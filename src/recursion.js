@@ -94,10 +94,10 @@ var gcd = function(x, y) {
 
 // 13. Write a function that compares each character of two strings and returns true if
 // both are identical.
-// cmpStr('house', 'houses') // false
-// cmpStr('', '') // true
-// cmpStr('tomato', 'tomato') // true
-var cmpStr = function(str1, str2) {
+// compareStr('house', 'houses') // false
+// compareStr('', '') // true
+// compareStr('tomato', 'tomato') // true
+var compareStr = function(str1, str2) {
 
 };
 

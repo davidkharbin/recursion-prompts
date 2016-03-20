@@ -5,10 +5,6 @@
 
     describe('1. Factorial', function() {
 
-      it('should be a function', function() {
-        expect(factorial).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(factorial(5))).to.equal('number');
       });
@@ -37,10 +33,6 @@
 
 
     describe('2. Sum of Integers', function() {
-
-      it('should be a function', function() {
-        expect(sum).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(sum([1,2,3,4,5,6]))).to.eql('number');
@@ -94,10 +86,6 @@
 
     describe('3. Sum Integers in Array', function() {
 
-      it('should be a function', function() {
-        expect(arraySum).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(arraySum([[1],[2,3],[[4]],5,6]))).to.eql('number');
       });
@@ -150,10 +138,6 @@
 
     describe('4. Check if Even', function() {
 
-      it('should be a function', function() {
-        expect(isEven).to.be.an.instanceOf(Function);
-      });
-
       it('should return a boolean', function() {
         expect(typeof(isEven(5))).to.equal('boolean');
         expect(typeof(isEven(8))).to.equal('boolean');
@@ -192,10 +176,6 @@
 
 
     describe('5. Integer Range', function() {
-
-      it('should be a function', function() {
-        expect(range).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(range(2, 7))).to.equal(true);
@@ -237,10 +217,6 @@
 
 
     describe('6. Compute Exponent', function() {
-
-      it('should be a function', function() {
-        expect(exponent).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(exponent(4,3))).to.eql('number');
@@ -293,10 +269,6 @@
 
     describe('7. Reverse String', function() {
 
-      it('should be a function', function() {
-        expect(reverse).to.be.an.instanceOf(Function);
-      });
-
       it('should return a string', function() {
         expect(typeof(reverse('orangutan'))).to.equal('string');
       });
@@ -327,10 +299,6 @@
 
 
     describe('8. Palindrome', function() {
-
-      it('should be a function', function() {
-        expect(palindrome).to.be.an.instanceOf(Function);
-      });
 
       it('should return a boolean', function() {
         expect(typeof(palindrome('rotor'))).to.equal('boolean');
@@ -369,10 +337,6 @@
 
     describe('9. Modulo', function() {
 
-      it('should be a function', function() {
-        expect(modulo).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(modulo(5,2))).to.equal('number');
         expect(typeof(modulo(8,4))).to.equal('number');
@@ -408,10 +372,6 @@
 
 
     describe('10. Multiply', function() {
-
-      it('should be a function', function() {
-        expect(multiply).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(multiply(5,2))).to.equal('number');
@@ -449,10 +409,6 @@
 
     describe('11. Divide', function() {
 
-      it('should be a function', function() {
-        expect(divide).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(divide(5,2))).to.equal('number');
         expect(typeof(divide(8,4))).to.equal('number');
@@ -488,10 +444,6 @@
 
 
     describe('12. Greatest Common Divisor', function() {
-
-      it('should be a function', function() {
-        expect(gcd).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(gcd(4,36))).to.equal('number');
@@ -532,31 +484,27 @@
 
     describe('13. Compare Strings', function() {
 
-      it('should be a function', function() {
-        expect(cmpStr).to.be.an.instanceOf(Function);
-      });
-
       it('should return a boolean', function() {
-        expect(typeof(cmpStr('house', 'houses'))).to.equal('boolean');
-        expect(typeof(cmpStr('', ''))).to.equal('boolean');
-        expect(typeof(cmpStr('tomato', 'tomato'))).to.equal('boolean');
+        expect(typeof(compareStr('house', 'houses'))).to.equal('boolean');
+        expect(typeof(compareStr('', ''))).to.equal('boolean');
+        expect(typeof(compareStr('tomato', 'tomato'))).to.equal('boolean');
       });
 
       it('should return true for identical strings', function() {
-        expect(cmpStr('house', 'houses')).to.eql(false);
-        expect(cmpStr('', '')).to.eql(true);
-        expect(cmpStr('tomato', 'tomato')).to.eql(true);
-        expect(cmpStr('', 'pop')).to.eql(false);
-        expect(cmpStr('foot', '')).to.eql(false);
-        expect(cmpStr('big dog', 'big dog')).to.eql(true);
+        expect(compareStr('house', 'houses')).to.eql(false);
+        expect(compareStr('', '')).to.eql(true);
+        expect(compareStr('tomato', 'tomato')).to.eql(true);
+        expect(compareStr('', 'pop')).to.eql(false);
+        expect(compareStr('foot', '')).to.eql(false);
+        expect(compareStr('big dog', 'big dog')).to.eql(true);
       });
 
       it('should use recursion', function () {
-        var originalCmpStr = cmpStr;
-        cmpStr = sinon.spy(cmpStr);
-        cmpStr('house', 'houses');
-        expect(cmpStr.callCount).to.be.above(1);
-        cmpStr = originalCmpStr;
+        var originalCompareStr = compareStr;
+        compareStr = sinon.spy(compareStr);
+        compareStr('house', 'houses');
+        expect(compareStr.callCount).to.be.above(1);
+        compareStr = originalCompareStr;
       });
 
     });
@@ -564,10 +512,6 @@
 
 
     describe('14. Create array from string', function() {
-
-      it('should be a function', function() {
-        expect(createArray).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(createArray('hello'))).to.equal(true);
@@ -594,10 +538,6 @@
 
     describe('15. Reverse an array', function() {
 
-      it('should be a function', function() {
-        expect(reverseArr).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(reverseArr([5,4,3,2,1]))).to.equal(true);
       });
@@ -622,10 +562,6 @@
 
 
     describe('16. Build an array with a given value and length', function() {
-
-      it('should be a function', function() {
-        expect(buildList).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(buildList(0,5))).to.equal(true);
@@ -655,10 +591,6 @@
 
 
     describe('17. Count value in array', function() {
-
-      it('should be a function', function() {
-        expect(countOccurrence).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(countOccurrence([2,7,4,4,1,4], 4))).to.equal('number');
@@ -691,10 +623,6 @@
     describe('18. Count key in object', function() {
       var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
-      it('should be a function', function() {
-        expect(countKeysInObj).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(countKeysInObj(input, 'r'))).to.equal('number');
         expect(typeof(countKeysInObj(input, 'e'))).to.equal('number');
@@ -725,10 +653,6 @@
     describe('19. Count value in object', function() {
       var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
-      it('should be a function', function() {
-        expect(countValuesInObj).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(countValuesInObj(input, 'r'))).to.equal('number');
         expect(typeof(countValuesInObj(input, 'e'))).to.equal('number');
@@ -757,10 +681,6 @@
 
 
     describe('20. Replace keys in object', function() {
-
-      it('should be a function', function() {
-        expect(replaceKeysInObj).to.be.an.instanceOf(Function);
-      });
 
       it('should return an object', function() {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
@@ -811,10 +731,6 @@
 
     describe('21. First n Fibonacci', function() {
 
-      it('should be a function', function() {
-        expect(fibonacci).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(fibonacci(5))).to.equal(true);
       });
@@ -846,10 +762,6 @@
 
 
     describe('22. Return nth Fibonacci', function() {
-
-      it('should be a function', function() {
-        expect(nthFibo).to.be.an.instanceOf(Function);
-      });
 
       it('should return a number', function() {
         expect(typeof(nthFibo(5))).to.equal('number');
@@ -884,10 +796,6 @@
 
     describe('23. Capitalize words in array', function() {
 
-      it('should be a function', function() {
-        expect(capitalizeWords).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(capitalizeWords(['i','am','learning','recursion']))).to.equal(true);
       });
@@ -910,10 +818,6 @@
 
 
     describe('24. Capitalize first letter of words in array', function() {
-
-      it('should be a function', function() {
-        expect(capitalizeFirst).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(capitalizeFirst(['i','am','learning','recursion']))).to.equal(true);
@@ -945,10 +849,6 @@
         e: {e: {e: 2}, ee: 'car'}
       };
 
-      it('should be a function', function() {
-        expect(nestedEvenSum).to.be.an.instanceOf(Function);
-      });
-
       it('should return a number', function() {
         expect(typeof(nestedEvenSum(obj))).to.equal('number');
       });
@@ -970,10 +870,6 @@
 
 
     describe('26. Flatten nested arrays', function() {
-
-      it('should be a function', function() {
-        expect(flatten).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(flatten([1,[2],[3,[[4]]],5]))).to.equal(true);
@@ -1001,10 +897,6 @@
       var input1 = [1,2,2,3,4,4,5,5,5];
       var input2 = [1,2,2,3,4,4,2,5,5,5,4,4];
 
-      it('should be a function', function() {
-        expect(compress).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(compress(input1))).to.equal(true);
       });
@@ -1027,10 +919,6 @@
 
 
     describe('28. Augment each element in nested arrays', function() {
-
-      it('should be a function', function() {
-        expect(augmentElements).to.be.an.instanceOf(Function);
-      });
 
       it('should return an array', function() {
         expect(Array.isArray(augmentElements([[],[3],[7]], 5))).to.equal(true);
@@ -1058,10 +946,6 @@
       var input1 = [2,0,0,0,1,4];
       var input2 = [2,0,0,0,1,0,0,4];
 
-      it('should be a function', function() {
-        expect(minimizeZeroes).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(minimizeZeroes(input1))).to.equal(true);
       });
@@ -1087,10 +971,6 @@
       var input1 = [2,7,8,3,1,4];
       var input2 = [-2,-7,8,3,-1,4];
 
-      it('should be a function', function() {
-        expect(alternateSign).to.be.an.instanceOf(Function);
-      });
-
       it('should return an array', function() {
         expect(Array.isArray(alternateSign(input1))).to.equal(true);
       });
@@ -1113,10 +993,6 @@
 
 
     describe('31. Convert numbers to text', function() {
-
-      it('should be a function', function() {
-        expect(numToText).to.be.an.instanceOf(Function);
-      });
 
       it('should return a string', function() {
         expect(typeof(numToText("I have 5 dogs and 6 ponies"))).to.equal('string');

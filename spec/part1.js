@@ -108,7 +108,7 @@
         expect(arraySum([3,[0,[-34,[-7,[18]]]]])).to.eql(-20);
       });
 
-      it('should return undefined for an empty array', function() {
+      it('should return 0 for empty array', function() {
         expect(arraySum([])).to.eql(0);
       });
 
@@ -883,6 +883,7 @@
         expect(flatten([[1],[2,3],[[4]],5,6])).to.eql([1,2,3,4,5,6]);
         expect(flatten([[12,[[34],[56]],78]])).to.eql([12,34,56,78]);
         expect(flatten([3,[0,[34,[7,[18]]]]])).to.eql([3,0,34,7,18]);
+        expect(flatten([[1],[2,[],3],[],[[4]],5,6])).to.eql([1,2,3,4,5,6]);
       });
 
       it('should use recursion by calling self', function () {

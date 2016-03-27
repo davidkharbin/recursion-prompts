@@ -6,13 +6,13 @@
     describe('32. Count tags', function() {
 
       var htmlStrings = [
-        '<p class="targetClassName"></p>',
-        '<p class="otherClassName targetClassName"></p>',
-        '<p><p class="targetClassName"></p></p>',
-        '<p><p class="targetClassName"><p class="targetClassName"></p></p></p>',
-        '<p><p></p><p><p class="targetClassName"></p></p></p>',
-        '<p><p class="targetClassName"></p><p class="targetClassName"></p></p>',
-        '<p><div class="somediv"><div class="innerdiv"><span class="targetClassName">yay</span></div></div></p>'
+        '<p class="recursionTest"></p>',
+        '<p class="otherClassName recursionTest"></p>',
+        '<p><p class="recursionTest"></p></p>',
+        '<p><p class="recursionTest"><p class="recursionTest"></p></p></p>',
+        '<p><p></p><p><p class="recursionTest"></p></p></p>',
+        '<p><p class="recursionTest"></p><p class="recursionTest"></p></p>',
+        '<p><div class="somediv"><div class="innerdiv"><span class="recursionTest">yay</span></div></div></p>'
       ];
 
       var result;
@@ -21,7 +21,7 @@
       tagCount = sinon.spy(tagCount);
 
       it('should return number of times of tag occurs on node', function(){
-        $('body').addClass('targetClassName');
+        $('body').addClass('recursionTest');
         htmlStrings.forEach(function(htmlString){
           var $rootElement = $(htmlString);
           $('body').append($rootElement);
@@ -32,7 +32,7 @@
 
           $rootElement.remove();
         });
-        $('body').removeClass('targetClassName');
+        $('body').removeClass('recursionTest');
       });
 
       it('should return a number', function() {

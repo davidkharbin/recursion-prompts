@@ -8,10 +8,6 @@
       var htmlStrings = [
         '<p class="recursionTest"></p>',
         '<p class="otherClassName recursionTest"></p>',
-        '<p><p class="recursionTest"></p></p>',
-        '<p><p class="recursionTest"><p class="recursionTest"></p></p></p>',
-        '<p><p></p><p><p class="recursionTest"></p></p></p>',
-        '<p><p class="recursionTest"></p><p class="recursionTest"></p></p>',
         '<p><div class="somediv"><div class="innerdiv"><span class="recursionTest">yay</span></div></div></p>'
       ];
 

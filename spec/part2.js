@@ -5,25 +5,41 @@
 
     describe('32. Count tags', function() {
 
-      it('should return a number', function() {
-        expect(typeof(tagCount(tag, node))).to.equal('number');
-        expect(typeof(tagCount(tag, node))).to.equal('number');
-        expect(typeof(tagCount(tag, node))).to.equal('number');
+      var htmlStrings = [
+        '<p class="targetClassName"></p>',
+        '<p class="otherClassName targetClassName"></p>',
+        '<p><p class="targetClassName"></p></p>',
+        '<p><p class="targetClassName"><p class="targetClassName"></p></p></p>',
+        '<p><p></p><p><p class="targetClassName"></p></p></p>',
+        '<p><p class="targetClassName"></p><p class="targetClassName"></p></p>',
+        '<p><div class="somediv"><div class="innerdiv"><span class="targetClassName">yay</span></div></div></p>'
+      ];
+
+      var result;
+      var expectedTagCount;
+      var originalTagCount = tagCount;
+      tagCount = sinon.spy(tagCount);
+
+      it('should return number of times of tag occurs on node', function(){
+        $('body').addClass('targetClassName');
+        htmlStrings.forEach(function(htmlString){
+          var $rootElement = $(htmlString);
+          $('body').append($rootElement);
+
+          result = tagCount('p');
+          expectedTagCount = document.getElementsByTagName('p').length;
+          expect(result).to.equal(expectedTagCount);
+
+          $rootElement.remove();
+        });
+        $('body').removeClass('targetClassName');
       });
 
-      it('should return number of times of tag occurs on node', function() {
-        expect(tagCount(tag, node)).to.eql(1);
-        expect(tagCount(tag, node)).to.eql(0);
-        expect(tagCount(tag, node)).to.eql(1);
-        expect(tagCount(tag, node)).to.eql(0);
-        expect(tagCount(tag, node)).to.eql(2);
-        expect(tagCount(tag, node)).to.eql(0);
+      it('should return a number', function() {
+        expect(typeof(result)).to.equal('number');
       });
 
       it('should use recursion by calling self', function () {
-        var originalTagCount = tagCount;
-        tagCount = sinon.spy(tagCount);
-        tagCount(tag, node);
         expect(tagCount.callCount).to.be.above(1);
         tagCount = originalTagCount;
       });

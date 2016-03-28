@@ -686,6 +686,17 @@
 
     describe('20. Replace keys in object', function() {
 
+      var tallyKeys = function(obj) {
+        var count = 0;
+        for (var k in obj) {
+          if (typeof obj[k] === 'object') {
+            count += tallyKeys(obj[k]);
+          }
+          count++;
+        }
+        return count;
+      };
+
       it('should return an object', function() {
         var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         expect(typeof(replaceKeysInObj(input, 'r', 'a'))).to.equal('object');
@@ -694,31 +705,35 @@
 
       it('should return object containing renamed keys', function() {
         var input  = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}}, 'y':'e'};
+        var output = replaceKeysInObj(input, 'e', 'f');
 
-        replaceKeysInObj(input, 'e', 'f');
+        expect(output.e).to.equal(undefined);
+        expect(output.f.x).to.equal('y');
+        expect(output.t.r.e).to.equal(undefined);
+        expect(output.t.r.f).to.equal('r');
+        expect(output.t.p.y).to.equal('r');
+        expect(output.y).to.equal('e');
 
-        var keyCount = 0;
-        for (var k in input) keyCount++;
-        expect(keyCount).to.equal(3);
+        expect(output.hasOwnProperty('e')).to.equal(false);
+        expect(output.hasOwnProperty('f')).to.equal(true);
+        expect(output.hasOwnProperty('t')).to.equal(true);
+        expect(output.hasOwnProperty('y')).to.equal(true);
 
-        expect(input.e).to.equal(undefined);
-        expect(input.f.x).to.equal('y');
-        expect(input.t.r.e).to.equal(undefined);
-        expect(input.t.r.f).to.equal('r');
-        expect(input.t.p.y).to.equal('r');
-        expect(input.y).to.equal('e');
+        expect(output.t.hasOwnProperty('r')).to.equal(true);
+        expect(output.t.hasOwnProperty('p')).to.equal(true);
 
-        expect(input.hasOwnProperty('e')).to.equal(false);
-        expect(input.hasOwnProperty('f')).to.equal(true);
-        expect(input.hasOwnProperty('t')).to.equal(true);
-        expect(input.hasOwnProperty('y')).to.equal(true);
+        expect(output.t.r.hasOwnProperty('e')).to.equal(false);
+        expect(output.t.r.hasOwnProperty('f')).to.equal(true);
+        expect(output.t.p.hasOwnProperty('y')).to.equal(true);
+      });
 
-        expect(input.t.hasOwnProperty('r')).to.equal(true);
-        expect(input.t.hasOwnProperty('p')).to.equal(true);
-
-        expect(input.t.r.hasOwnProperty('e')).to.equal(false);
-        expect(input.t.r.hasOwnProperty('f')).to.equal(true);
-        expect(input.t.p.hasOwnProperty('y')).to.equal(true);
+      it('should return object with same number of keys', function () {
+        var input  = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}}, 'y':'e'};
+        var output1 = replaceKeysInObj(input, 'e', 'f');
+        var output2 = replaceKeysInObj(output1, 'e', 'f');
+        expect(tallyKeys(input)).to.equal(8);
+        expect(tallyKeys(output1)).to.equal(8);
+        expect(tallyKeys(output2)).to.equal(8);
       });
 
       it('should use recursion by calling self', function () {

@@ -737,10 +737,10 @@
       });
 
       it('should use recursion by calling self', function () {
-        var output = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
         var originalReplaceKeysInObj = replaceKeysInObj;
         replaceKeysInObj = sinon.spy(replaceKeysInObj);
-        replaceKeysInObj(output, 'r', 'a');
+        replaceKeysInObj(input, 'r', 'a');
         expect(replaceKeysInObj.callCount).to.be.above(1);
         replaceKeysInObj = originalReplaceKeysInObj;
       });

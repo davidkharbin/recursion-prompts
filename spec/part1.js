@@ -56,8 +56,8 @@
         expect(sum([3,0,-34,-7,18])).to.eql(-20);
       });
 
-      it('should return undefined for an empty array', function() {
-        expect(sum([])).to.eql(undefined);
+      it('should return 0 for empty array', function() {
+        expect(sum([])).to.eql(0);
       });
 
       it('should accept an array with a single integer', function() {

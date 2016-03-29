@@ -179,7 +179,42 @@
 
 
 
-    describe('5. Integer Range', function() {
+    describe('5. Sum Below', function() {
+
+      it('should return a number', function() {
+        expect(typeof(sumBelow(10))).to.eql('number');
+      });
+
+      it('should return the sum of non-negative integers below given integer', function() {
+        expect(sumBelow(0)).to.eql(0);
+        expect(sumBelow(1)).to.eql(0);
+        expect(sumBelow(2)).to.eql(1);
+        expect(sumBelow(7)).to.eql(21);
+        expect(sumBelow(21)).to.eql(210);
+        expect(sumBelow(92)).to.eql(4186);
+      });
+
+      it('should return the sum of an array of negative integers', function() {
+        expect(sumBelow(-1)).to.eql(0);
+        expect(sumBelow(-2)).to.eql(-1);
+        expect(sumBelow(-6)).to.eql(-15);
+        expect(sumBelow(-21)).to.eql(-210);
+        expect(sumBelow(-92)).to.eql(-4186);
+      });
+
+      it('should use recursion by calling self', function () {
+        var originalSumBelow = sumBelow;
+        sumBelow = sinon.spy(sumBelow);
+        sumBelow(10);
+        expect(sumBelow.callCount).to.be.above(1);
+        sumBelow = originalSumBelow;
+      });
+
+    });
+
+
+
+    describe('6. Integer Range', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(range(2, 7))).to.equal(true);
@@ -220,7 +255,7 @@
 
 
 
-    describe('6. Compute Exponent', function() {
+    describe('7. Compute Exponent', function() {
 
       it('should return a number', function() {
         expect(typeof(exponent(4,3))).to.eql('number');
@@ -271,7 +306,35 @@
 
 
 
-    describe('7. Reverse String', function() {
+    describe('8. Power of Two', function() {
+
+      it('should return a boolean', function() {
+        expect(typeof(powerOfTwo(10))).to.equal('boolean');
+        expect(typeof(powerOfTwo(16))).to.equal('boolean');
+      });
+
+      it('should return true for powers of two', function() {
+        expect(powerOfTwo(0)).to.equal(false);
+        expect(powerOfTwo(1)).to.equal(true);
+        expect(powerOfTwo(2)).to.equal(true);
+        expect(powerOfTwo(10)).to.equal(false);
+        expect(powerOfTwo(128)).to.equal(true);
+        expect(powerOfTwo(256)).to.equal(true);
+      });
+
+      it('should use recursion by calling self', function () {
+        var originalPowerOfTwo = powerOfTwo;
+        powerOfTwo = sinon.spy(powerOfTwo);
+        powerOfTwo(32);
+        expect(powerOfTwo.callCount).to.be.above(1);
+        powerOfTwo = originalPowerOfTwo;
+      });
+
+    });
+
+
+
+    describe('9. Reverse String', function() {
 
       it('should return a string', function() {
         expect(typeof(reverse('orangutan'))).to.equal('string');
@@ -302,7 +365,7 @@
 
 
 
-    describe('8. Palindrome', function() {
+    describe('10. Palindrome', function() {
 
       it('should return a boolean', function() {
         expect(typeof(palindrome('rotor'))).to.equal('boolean');
@@ -339,7 +402,7 @@
 
 
 
-    describe('9. Modulo', function() {
+    describe('11. Modulo', function() {
 
       it('should return a number', function() {
         expect(typeof(modulo(5,2))).to.equal('number');
@@ -375,7 +438,7 @@
 
 
 
-    describe('10. Multiply', function() {
+    describe('12. Multiply', function() {
 
       it('should return a number', function() {
         expect(typeof(multiply(5,2))).to.equal('number');
@@ -411,7 +474,7 @@
 
 
 
-    describe('11. Divide', function() {
+    describe('13. Divide', function() {
 
       it('should return a number', function() {
         expect(typeof(divide(5,2))).to.equal('number');
@@ -447,7 +510,7 @@
 
 
 
-    describe('12. Greatest Common Divisor', function() {
+    describe('14. Greatest Common Divisor', function() {
 
       it('should return a number', function() {
         expect(typeof(gcd(4,36))).to.equal('number');
@@ -486,7 +549,7 @@
 
 
 
-    describe('13. Compare Strings', function() {
+    describe('15. Compare Strings', function() {
 
       it('should return a boolean', function() {
         expect(typeof(compareStr('house', 'houses'))).to.equal('boolean');
@@ -515,7 +578,7 @@
 
 
 
-    describe('14. Create array from string', function() {
+    describe('16. Create array from string', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(createArray('hello'))).to.equal(true);
@@ -540,7 +603,7 @@
 
 
 
-    describe('15. Reverse an array', function() {
+    describe('17. Reverse an array', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(reverseArr([5,4,3,2,1]))).to.equal(true);
@@ -565,7 +628,7 @@
 
 
 
-    describe('16. Build an array with a given value and length', function() {
+    describe('18. Build an array with a given value and length', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(buildList(0,5))).to.equal(true);
@@ -594,7 +657,7 @@
 
 
 
-    describe('17. Count value in array', function() {
+    describe('19. Count value in array', function() {
 
       it('should return a number', function() {
         expect(typeof(countOccurrence([2,7,4,4,1,4], 4))).to.equal('number');
@@ -624,7 +687,44 @@
 
 
 
-    describe('18. Count key in object', function() {
+    describe('20. Recursive Map', function() {
+
+      var timesTwo = function(n) { return n * 2; };
+      var input3 = [1,2,3,4,5];
+
+      it('should return an array', function() {
+        expect(Array.isArray(rMap([1,2,3], timesTwo))).to.equal(true);
+      });
+
+      checkForNativeMethods(function() {
+        rMap([1,2,3,4], timesTwo);
+      });
+
+      it('should return new array without mutating the input array', function() {
+        var input = [1,2,3,4,5];
+        var result = rMap(input, function(num) { /* poop */ });
+        expect(input).to.eql([1,2,3,4,5]);
+        expect(result).to.not.equal(input);
+      });
+
+      it('should apply a function to every value in an array', function() {
+        var doubledNumbers = rMap([1,2,3], timesTwo);
+        expect(doubledNumbers).to.eql([2,4,6]);
+      });
+
+      it('should use recursion by calling self', function () {
+        var originalrMap = rMap;
+        rMap = sinon.spy(rMap);
+        rMap([1,2,3,4], timesTwo);
+        expect(rMap.callCount).to.be.above(1);
+        rMap = originalrMap;
+      });
+
+    });
+
+
+
+    describe('21. Count key in object', function() {
       var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
       it('should return a number', function() {
@@ -654,7 +754,7 @@
 
 
 
-    describe('19. Count value in object', function() {
+    describe('22. Count value in object', function() {
       var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 
       it('should return a number', function() {
@@ -684,7 +784,7 @@
 
 
 
-    describe('20. Replace keys in object', function() {
+    describe('23. Replace keys in object', function() {
 
       var tallyKeys = function(obj) {
         var count = 0;
@@ -748,7 +848,7 @@
     });
 
 
-    describe('21. First n Fibonacci', function() {
+    describe('24. First n Fibonacci', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(fibonacci(5))).to.equal(true);
@@ -780,7 +880,7 @@
 
 
 
-    describe('22. Return nth Fibonacci', function() {
+    describe('25. Return nth Fibonacci', function() {
 
       it('should return a number', function() {
         expect(typeof(nthFibo(5))).to.equal('number');
@@ -813,7 +913,7 @@
 
 
 
-    describe('23. Capitalize words in array', function() {
+    describe('26. Capitalize words in array', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(capitalizeWords(['i','am','learning','recursion']))).to.equal(true);
@@ -836,7 +936,7 @@
 
 
 
-    describe('24. Capitalize first letter of words in array', function() {
+    describe('27. Capitalize first letter of words in array', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(capitalizeFirst(['i','am','learning','recursion']))).to.equal(true);
@@ -859,7 +959,7 @@
 
 
 
-    describe('25. Sum even numbers in nested objects', function() {
+    describe('28. Sum even numbers in nested objects', function() {
       var obj = {
         a: 2,
         b: {b: 2, bb: {b: 3, bb: {b: 2}}},
@@ -888,7 +988,7 @@
 
 
 
-    describe('26. Flatten nested arrays', function() {
+    describe('29. Flatten nested arrays', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(flatten([1,[2],[3,[[4]]],5]))).to.equal(true);
@@ -913,7 +1013,40 @@
 
 
 
-    describe('27. Eliminate consecutive duplicates', function() {
+    describe('30. Tally letters in string', function() {
+
+      it('should return an object', function() {
+        expect(typeof(letterTally('orangutan'))).to.equal('object');
+      });
+
+      it('should return object containing tallies of unique letters', function() {
+        var output = letterTally('potato');
+
+        expect(output.p).to.equal(1);
+        expect(output.o).to.equal(2);
+        expect(output.t).to.equal(2);
+        expect(output.a).to.equal(1);
+      });
+
+      it('should return object containing the number of keys corresponding to unique letters', function () {
+        var output = letterTally('mississippi');
+        var countKeys = Object.keys(output).length;
+        expect(countKeys).to.equal(4);
+      });
+
+      it('should use recursion by calling self', function () {
+        var originalLetterTally = letterTally;
+        letterTally = sinon.spy(letterTally);
+        letterTally('invasion');
+        expect(letterTally.callCount).to.be.above(1);
+        letterTally = originalLetterTally;
+      });
+
+    });
+
+
+
+    describe('31. Eliminate consecutive duplicates', function() {
       var input1 = [1,2,2,3,4,4,5,5,5];
       var input2 = [1,2,2,3,4,4,2,5,5,5,4,4];
 
@@ -938,7 +1071,7 @@
 
 
 
-    describe('28. Augment each element in nested arrays', function() {
+    describe('32. Augment each element in nested arrays', function() {
 
       it('should return an array', function() {
         expect(Array.isArray(augmentElements([[],[3],[7]], 5))).to.equal(true);
@@ -962,7 +1095,7 @@
 
 
 
-    describe('29. Minimize zeroes', function() {
+    describe('33. Minimize zeroes', function() {
       var input1 = [2,0,0,0,1,4];
       var input2 = [2,0,0,0,1,0,0,4];
 
@@ -987,7 +1120,7 @@
 
 
 
-    describe('30. Alternate sign', function() {
+    describe('34. Alternate sign', function() {
       var input1 = [2,7,8,3,1,4];
       var input2 = [-2,-7,8,3,-1,4];
 
@@ -1012,7 +1145,7 @@
 
 
 
-    describe('31. Convert numbers to text', function() {
+    describe('35. Convert numbers to text', function() {
 
       it('should return a string', function() {
         expect(typeof(numToText("I have 5 dogs and 6 ponies"))).to.equal('string');
@@ -1034,4 +1167,13 @@
     });
 
   });
+
+  function checkForNativeMethods(runFunction) {
+    it('should not use the native version of map', function() {
+      // These spies are set up in testSupport.js
+      runFunction();
+      expect(Array.prototype.map.called).to.equal(false);
+    });
+  }
+
 }());

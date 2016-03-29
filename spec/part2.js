@@ -3,7 +3,7 @@
 
   describe('More Exercises in Recursion', function() {
 
-    describe('32. Count tags', function() {
+    describe('36. Count tags', function() {
 
       var htmlStrings = [
         '<p class="recursionTest"></p>',
@@ -44,7 +44,7 @@
 
 
 
-    describe('33. Binary Search', function() {
+    describe('37. Binary Search', function() {
       var input1 = [1,2,3,4,5,6];
       var input2 = [1,2,3,4,5,6,7];
       var primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
@@ -97,7 +97,7 @@
 
 
 
-    describe('34. Merge Sort', function() {
+    describe('38. Merge Sort', function() {
       var numbers = [8,2,20,1,15];
 
       it('should return an array', function() {

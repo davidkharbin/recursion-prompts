@@ -422,6 +422,8 @@
         expect(modulo(78, 453)).to.equal(78 % 453);
         expect(modulo(-79, 82)).to.equal(-79 % 82);
         expect(modulo(-275, -502)).to.equal(-275 % -502);
+        expect(modulo(-275, -274)).to.equal(-275 % -274);
+        expect(modulo(-4, 2)).to.equal(-4 % 2);
         expect(modulo(0, 32)).to.equal(0 % 32);
         expect(modulo(0, 0).toString()).to.equal('NaN');
       });

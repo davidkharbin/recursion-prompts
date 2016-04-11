@@ -121,6 +121,10 @@
         expect(sortedNumbers).to.eql([-15,-2,1,8,20]);
       });
 
+      it("should not use the native Array sort method", function() {
+        expect(mergeSort.toString()).to.not.contain('sort');
+      });
+
       it('should use recursion by calling self', function () {
         var originalMergeSort = mergeSort;
         mergeSort = sinon.spy(mergeSort);

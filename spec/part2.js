@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 (function() {
   'use strict';
 
@@ -88,7 +90,7 @@
       it('should use recursion by calling self', function () {
         var originalBinarySearch = binarySearch;
         binarySearch = sinon.spy(binarySearch);
-        binarySearch(primes,19);
+        binarySearch(primes, 19);
         expect(binarySearch.callCount).to.be.above(1);
         binarySearch = originalBinarySearch;
       });
@@ -98,7 +100,11 @@
 
 
     describe('38. Merge Sort', function() {
-      var numbers = [8,2,20,1,15];
+      var numbers;
+
+      beforeEach(function() {
+        numbers = [8,2,20,1,15];
+      });
 
       it('should return an array', function() {
         var sortedNumbers = mergeSort(numbers);
@@ -111,18 +117,27 @@
       });
 
       it('should sort an array of numbers in order of least to greatest', function() {
-        var sortedNumbers = mergeSort(numbers);
-        expect(sortedNumbers).to.eql([1,2,8,15,20]);
+        expect(mergeSort([])).to.eql([]);
+        expect(mergeSort([0])).to.eql([0]);
+        expect(mergeSort([1,0])).to.eql([0,1]);
+        expect(mergeSort([0,1,2,3])).to.eql([0,1,2,3]);
+        expect(mergeSort([5,4,3,2,1])).to.eql([1,2,3,4,5]);
+        expect(mergeSort([10,1,8,5,0])).to.eql([0,1,5,8,10]);
+        expect(mergeSort([8,2,20,1,15])).to.eql([1,2,8,15,20]);
       });
 
       it('should be able to handle negative numbers', function() {
-        var numbers = [8,-2,20,1,-15];
-        var sortedNumbers = mergeSort(numbers);
-        expect(sortedNumbers).to.eql([-15,-2,1,8,20]);
+        expect(mergeSort([-1])).to.eql([-1]);
+        expect(mergeSort([0,-1])).to.eql([-1,0]);
+        expect(mergeSort([0,1,-2,-3])).to.eql([-3,-2,0,1]);
+        expect(mergeSort([8,-2,20,1,-15])).to.eql([-15,-2,1,8,20]);
+        expect(mergeSort([0,-1,-2,-3,-4,-5,-10])).to.eql([-10,-5,-4,-3,-2,-1,0]);
       });
 
       it("should not use the native Array sort method", function() {
-        expect(mergeSort.toString()).to.not.contain('sort');
+        // Spying on Array.prototype.sort in testSupport.js
+        mergeSort(numbers);
+        expect(Array.prototype.sort.called).to.equal(false);
       });
 
       it('should use recursion by calling self', function () {
@@ -136,18 +151,5 @@
     });
 
   });
-
-  // function checkForNativeMethods(runUnderbarFunction) {
-  //   it('should not use the native version of sort', function() {
-  //     // These spies are set up in testSupport.js
-  //     runUnderbarFunction();
-  //     expect(Array.prototype.indexOf.called).to.equal(false);
-  //     expect(Array.prototype.filter.called).to.equal(false);
-  //     expect(Array.prototype.sort.called).to.equal(false);
-  //   });
-  // }
-  //     checkForNativeMethods(function() {
-  //       mergeSort(numbers);
-  //     });
 
 }());

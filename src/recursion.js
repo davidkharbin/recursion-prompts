@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 // Solve all of the following prompts using recursion.
 
 // 1. Calculate the factorial of a number.  The factorial of a non-negative integer n,
@@ -91,7 +93,7 @@ var compareStr = function(str1, str2) {
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str) {
 };
 
 // 17. Reverse the order of an array
@@ -153,7 +155,7 @@ var nthFibo = function(n) {
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(array) {
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
@@ -216,6 +218,7 @@ var alternateSign = function(array) {
 var numToText = function(str) {
 };
 
+
 // *** EXTRA CREDIT ***
 
 // 36. Return the number of times a tag occurs in the DOM.
@@ -225,6 +228,7 @@ var tagCount = function(tag, node) {
 // 37. Write a function for binary search.
 // Sample array:  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 // console.log(binarySearch(5)) will return '5'
+// https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
 
 var binarySearch = function(array, target, min, max) {
 };
@@ -232,5 +236,6 @@ var binarySearch = function(array, target, min, max) {
 // 38. Write a merge sort function.
 // Sample array:  [34,7,23,32,5,62]
 // Sample output: [5,7,23,32,34,62]
+// https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
 var mergeSort = function(array) {
 };

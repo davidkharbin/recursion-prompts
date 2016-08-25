@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 (function() {
   'use strict';
 
@@ -256,6 +258,16 @@
 
 
     describe('7. Compute Exponent', function() {
+      var originalExponent = exponent;
+      exponent = sinon.spy(exponent);
+
+      afterEach(function() {
+        exponent.reset();
+      });
+
+      after(function() {
+        exponent = originalExponent;
+      });
 
       it('should return a number', function() {
         expect(typeof(exponent(4,3))).to.eql('number');
@@ -281,12 +293,6 @@
         expect(exponent(2300,1)).to.equal(2300);
       });
 
-      // it('BONUS: should accept negative integer for base', function() {
-      //   expect(exponent(-3,4)).to.equal(-81);
-      //   expect(exponent(-12,5)).to.equal(-248832);
-      //   expect(exponent(-7,2)).to.equal(-49);
-      //   expect(exponent(-7,4)).to.equal(-2401);
-      // });
 
       it('should accept negative integer for exponent', function() {
         expect(exponent(4,-2)).to.equal(0.0625);
@@ -295,11 +301,31 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalExponent = exponent;
-        exponent = sinon.spy(exponent);
         exponent(3,4);
         expect(exponent.callCount).to.be.above(1);
-        exponent = originalExponent;
+      });
+
+      // remove the 'x' to enable test
+      xit('optimize for even numbers', function() {
+        exponent.reset();
+        exponent(3,4);
+        expect(exponent.callCount).to.equal(4);
+
+        exponent.reset();
+        exponent(12,5);
+        expect(exponent.callCount).to.equal(5);
+
+        exponent.reset();
+        exponent(19,7);
+        expect(exponent.callCount).to.equal(6);
+      });
+
+      // remove the 'x' to enable test
+      xit('should accept negative integer for base', function() {
+        expect(exponent(-3,4)).to.equal(-81);
+        expect(exponent(-12,5)).to.equal(-248832);
+        expect(exponent(-7,2)).to.equal(-49);
+        expect(exponent(-7,4)).to.equal(-2401);
       });
 
     });
@@ -690,21 +716,28 @@
 
 
     describe('20. Recursive Map', function() {
+      var timesTwo, input;
 
-      var timesTwo = function(n) { return n * 2; };
-      var input3 = [1,2,3,4,5];
+      beforeEach(function() {
+        timesTwo = function(n) { return n * 2; };
+        input = [1,2,3,4,5];
+      });
+      // var timesTwo = function(n) { return n * 2; };
+      // var input3 = [1,2,3,4,5];
 
       it('should return an array', function() {
-        expect(Array.isArray(rMap([1,2,3], timesTwo))).to.equal(true);
+        expect(Array.isArray(rMap(input, timesTwo))).to.equal(true);
       });
 
-      checkForNativeMethods(function() {
-        rMap([1,2,3,4], timesTwo);
+      it('should not use the native version of map', function() {
+        // Spying on Array.prototype.map in testSupport.js
+        rMap(input, timesTwo);
+        expect(Array.prototype.map.called).to.equal(false);
       });
 
       it('should return new array without mutating the input array', function() {
-        var input = [1,2,3,4,5];
-        var result = rMap(input, function(num) { /* poop */ });
+        // var input = [1,2,3,4,5];
+        var result = rMap(input, num => num);
         expect(input).to.eql([1,2,3,4,5]);
         expect(result).to.not.equal(input);
       });
@@ -1170,12 +1203,12 @@
 
   });
 
-  function checkForNativeMethods(runFunction) {
-    it('should not use the native version of map', function() {
-      // These spies are set up in testSupport.js
-      runFunction();
-      expect(Array.prototype.map.called).to.equal(false);
-    });
-  }
+  // function checkForNativeMethods(runFunction) {
+  //   it('should not use the native version of map', function() {
+  //     // These spies are set up in testSupport.js
+  //     runFunction();
+  //     expect(Array.prototype.map.called).to.equal(false);
+  //   });
+  // }
 
 }());

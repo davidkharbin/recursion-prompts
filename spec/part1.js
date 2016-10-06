@@ -309,15 +309,15 @@
       xit('optimize for even numbers', function() {
         exponent.reset();
         exponent(3,4);
-        expect(exponent.callCount).to.equal(4);
+        expect(exponent.callCount).to.be.at.most(4);
 
         exponent.reset();
         exponent(12,5);
-        expect(exponent.callCount).to.equal(5);
+        expect(exponent.callCount).to.be.at.most(5);
 
         exponent.reset();
         exponent(19,7);
-        expect(exponent.callCount).to.equal(6);
+        expect(exponent.callCount).to.be.at.most(6);
       });
 
       // remove the 'x' to enable test

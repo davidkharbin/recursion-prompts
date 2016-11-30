@@ -5,54 +5,58 @@
 
   describe('More Exercises in Recursion', function() {
 
-    describe('36. Count tags', function() {
+    describe('37. Count Tags', function() {
+      var originalTagCount, actualResults, expectedResults, htmlString, tags, $rootElement;
 
-      var htmlStrings = [
-        '<p class="recursionTest"></p>',
-        '<p class="otherClassName recursionTest"></p>',
-        '<p><div class="somediv"><div class="innerdiv"><span class="recursionTest">yay</span></div></div></p>'
-      ];
+      before(function() {
+        originalTagCount = tagCount;
+        tagCount = sinon.spy(tagCount);
+        actualResults = [];
+        expectedResults = [];
+        $rootElement = $('<p><div><div><p><span>yay</span></p></div><p>poop</p></div></p>');
+        $('body').append($rootElement);
+      });
 
-      var result;
-      var expectedTagCount;
-      var originalTagCount = tagCount;
-      tagCount = sinon.spy(tagCount);
-
-      it('should return number of times of tag occurs on node', function(){
-        $('body').addClass('recursionTest');
-        htmlStrings.forEach(function(htmlString){
-          var $rootElement = $(htmlString);
-          $('body').append($rootElement);
-
-          result = tagCount('p');
-          expectedTagCount = document.getElementsByTagName('p').length;
-          expect(result).to.equal(expectedTagCount);
-
-          $rootElement.remove();
-        });
-        $('body').removeClass('recursionTest');
+      after(function() {
+        $rootElement.remove();
+        tagCount = originalTagCount;
       });
 
       it('should return a number', function() {
-        expect(typeof(result)).to.equal('number');
+        actualResults.push(tagCount('p'));
+        expectedResults.push(document.getElementsByTagName('p').length);
+        expect(actualResults[0]).to.be.a('number');
+      });
+
+      it('should return number of times of tag occurs on node', function(){
+        actualResults.push(tagCount('div'));
+        expectedResults.push(document.getElementsByTagName('div').length);
+        expect(actualResults[1]).to.equal(expectedResults[1]);
+      });
+
+      it('should support various tag types', function() {
+        actualResults.push(tagCount('span'));
+        expectedResults.push(document.getElementsByTagName('span').length);
+        actualResults.forEach(function(result, i) {
+          expect(result).to.equal(expectedResults[i]);
+        });
       });
 
       it('should use recursion by calling self', function () {
-        expect(tagCount.callCount).to.be.above(1);
-        tagCount = originalTagCount;
+        expect(tagCount.callCount).to.be.above(3);
       });
 
     });
 
 
 
-    describe('37. Binary Search', function() {
+    describe('38. Binary Search', function() {
       var input1 = [1,2,3,4,5,6];
       var input2 = [1,2,3,4,5,6,7];
       var primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
 
       it('should return a number', function() {
-        expect(typeof(binarySearch(input1, 3))).to.eql('number');
+        expect(binarySearch(input1, 3)).to.be.a('number');
       });
 
       it('should not mutate the input array', function() {
@@ -99,7 +103,7 @@
 
 
 
-    describe('38. Merge Sort', function() {
+    describe('39. Merge Sort', function() {
       var numbers;
 
       beforeEach(function() {
@@ -108,7 +112,7 @@
 
       it('should return an array', function() {
         var sortedNumbers = mergeSort(numbers);
-        expect(Array.isArray(sortedNumbers)).to.equal(true);
+        expect(sortedNumbers).to.be.an('array');
       });
 
       it('should not mutate the input array', function() {

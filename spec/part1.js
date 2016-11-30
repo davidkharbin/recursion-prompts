@@ -41,10 +41,10 @@
         expect(factorial.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         factorial(4);
         factorial.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -111,10 +111,10 @@
         expect(sum.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         sum([1,2,3,4,5,6]);
         sum.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -181,10 +181,10 @@
         expect(arraySum.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         arraySum([[1],[2,3],[[4]],5,6]);
         arraySum.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -242,10 +242,10 @@
         expect(isEven.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         isEven(118);
         isEven.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -295,10 +295,10 @@
         expect(sumBelow.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         sumBelow(10);
         sumBelow.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -354,10 +354,10 @@
         expect(range.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than two arguments', function() {
+      it('should be invoked with two arguments', function() {
         range(3,8);
         range.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(2);
+          expect(arg).to.have.length(2);
         });
       });
 
@@ -417,10 +417,10 @@
         expect(exponent.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than two arguments', function() {
+      it('should be invoked with two arguments', function() {
         exponent(3,4);
         exponent.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(2);
+          expect(arg).to.have.length(2);
         });
       });
 
@@ -491,10 +491,10 @@
         expect(powerOfTwo.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         powerOfTwo(32);
         powerOfTwo.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -539,10 +539,10 @@
         expect(reverse.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         reverse('orangutan');
         reverse.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -594,10 +594,10 @@
         expect(palindrome.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than one argument', function() {
+      it('should be invoked with one argument', function() {
         palindrome('saippuakivikauppias');
         palindrome.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(1);
+          expect(arg).to.have.length(1);
         });
       });
 
@@ -650,10 +650,10 @@
         expect(modulo.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than two arguments', function() {
+      it('should be invoked with two arguments', function() {
         modulo(5,2);
         modulo.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(2);
+          expect(arg).to.have.length(2);
         });
       });
 
@@ -728,18 +728,37 @@
         expect(multiply.callCount).to.be.above(1);
       });
 
-      it('should be invoked with no more than two arguments', function() {
+      it('should be invoked with two arguments', function() {
         multiply(8,4);
         multiply.args.forEach(arg => {
-          expect(arg).to.have.length.of.at.most(2);
+          expect(arg).to.have.length(2);
         });
       });
 
     });
 
-/*   CONTINUE REFACTORING BELOW FOR ARGUMENT RESTRICTION   */
+
 
     describe('13. Divide', function() {
+      var originalDivide;
+
+      before(function() {
+        originalDivide = divide;
+        divide = sinon.spy(divide);
+      });
+
+      afterEach(function() {
+        divide.reset();
+      });
+
+      after(function() {
+        divide = originalDivide;
+      });
+
+      it('should return a number', function() {
+        expect(multiply(5,2)).to.be.a('number');
+        expect(multiply(8,4)).to.be.a('number');
+      });
 
       it('should return a number', function() {
         expect(divide(5,2)).to.be.a('number');
@@ -760,15 +779,19 @@
         expect(divide(-79, 82)).to.equal(~~(-79 / 82));
         expect(divide(-275, -582)).to.equal(~~(-275 / -582));
         expect(divide(0, 32)).to.equal(~~(0 / 32));
-        expect(divide(0, 0).toString()).to.equal('NaN');
+        expect(divide(0, 0)).to.be.NaN;
       });
 
       it('should use recursion by calling self', function () {
-        var originalDivide = divide;
-        divide = sinon.spy(divide);
         divide(17, 5);
         expect(divide.callCount).to.be.above(1);
-        divide = originalDivide;
+      });
+
+      it('should be invoked with two arguments', function() {
+        divide(8,4);
+        divide.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -776,6 +799,20 @@
 
 
     describe('14. Greatest Common Divisor', function() {
+      var originalGcd;
+
+      before(function() {
+        originalGcd = gcd;
+        gcd = sinon.spy(gcd);
+      });
+
+      afterEach(function() {
+        gcd.reset();
+      });
+
+      after(function() {
+        gcd = originalGcd;
+      });
 
       it('should return a number', function() {
         expect(gcd(4,36)).to.be.a('number');
@@ -803,11 +840,15 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalGcd = gcd;
-        gcd = sinon.spy(gcd);
         gcd(17, 5);
         expect(gcd.callCount).to.be.above(1);
-        gcd = originalGcd;
+      });
+
+      it('should be invoked with two arguments', function() {
+        gcd(17,5);
+        gcd.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -815,6 +856,20 @@
 
 
     describe('15. Compare Strings', function() {
+      var originalCompareStr;
+
+      before(function() {
+        originalCompareStr = compareStr;
+        compareStr = sinon.spy(compareStr);
+      });
+
+      afterEach(function() {
+        compareStr.reset();
+      });
+
+      after(function() {
+        compareStr = originalCompareStr;
+      });
 
       it('should return a boolean', function() {
         expect(compareStr('house', 'houses')).to.be.a('boolean');
@@ -832,11 +887,15 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalCompareStr = compareStr;
-        compareStr = sinon.spy(compareStr);
         compareStr('house', 'houses');
         expect(compareStr.callCount).to.be.above(1);
-        compareStr = originalCompareStr;
+      });
+
+      it('should be invoked with two arguments', function() {
+        compareStr('house', 'houses');
+        compareStr.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -844,6 +903,20 @@
 
 
     describe('16. Create array from string', function() {
+      var originalCreateArray;
+
+      before(function() {
+        originalCreateArray = createArray;
+        createArray = sinon.spy(createArray);
+      });
+
+      afterEach(function() {
+        createArray.reset();
+      });
+
+      after(function() {
+        createArray = originalCreateArray;
+      });
 
       it('should return an array', function() {
         expect(createArray('hello')).to.be.an('array');
@@ -857,11 +930,15 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalCreateArray = createArray;
-        createArray = sinon.spy(createArray);
         createArray('hello');
         expect(createArray.callCount).to.be.above(1);
-        createArray = originalCreateArray;
+      });
+
+      it('should be invoked with one argument', function() {
+        createArray('hello');
+        createArray.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -869,6 +946,20 @@
 
 
     describe('17. Reverse an array', function() {
+      var originalReverseArr;
+
+      before(function() {
+        originalReverseArr = reverseArr;
+        reverseArr = sinon.spy(reverseArr);
+      });
+
+      afterEach(function() {
+        reverseArr.reset();
+      });
+
+      after(function() {
+        reverseArr = originalReverseArr;
+      });
 
       it('should return an array', function() {
         expect(reverseArr([5,4,3,2,1])).to.be.an('array');
@@ -882,11 +973,15 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalReverseArr = reverseArr;
-        reverseArr = sinon.spy(reverseArr);
         reverseArr([5,4,3,2,1]);
         expect(reverseArr.callCount).to.be.above(1);
-        reverseArr = originalReverseArr;
+      });
+
+      it('should be invoked with one argument', function() {
+        reverseArr([5,4,3,2,1]);
+        reverseArr.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -894,6 +989,20 @@
 
 
     describe('18. Build an array with a given value and length', function() {
+      var originalBuildList;
+
+      before(function() {
+        originalBuildList = buildList;
+        buildList = sinon.spy(buildList);
+      });
+
+      afterEach(function() {
+        buildList.reset();
+      });
+
+      after(function() {
+        buildList = originalBuildList;
+      });
 
       it('should return an array', function() {
         expect(buildList(0,5)).to.be.an('array');
@@ -907,15 +1016,18 @@
         expect(buildList([], 2)).to.eql([[],[]]);
         expect(buildList({}, 4)).to.eql([{},{},{},{}]);
         expect(buildList(true, 3)).to.eql([true,true,true]);
-        expect(buildList(5+5, 3)).to.eql([10,10,10]);
       });
 
       it('should use recursion by calling self', function () {
-        var originalBuildList = buildList;
-        buildList = sinon.spy(buildList);
         buildList(2,7);
         expect(buildList.callCount).to.be.above(1);
-        buildList = originalBuildList;
+      });
+
+      it('should be invoked with two arguments', function() {
+        buildList('five',5);
+        buildList.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -972,13 +1084,32 @@
         expect(fizzBuzz.callCount).to.be.above(1);
       });
 
-// ['1','2','Fizz','4','Buzz','Fizz','7','8','Fizz','Buzz','11','Fizz','13','14','FizzBuzz']
+      it('should be invoked with one argument', function() {
+        fizzBuzz(5);
+        fizzBuzz.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
+      });
 
     });
 
 
 
     describe('20. Count value in array', function() {
+      var originalCountOccurrence;
+
+      before(function() {
+        originalCountOccurrence = countOccurrence;
+        countOccurrence = sinon.spy(countOccurrence);
+      });
+
+      afterEach(function() {
+        countOccurrence.reset();
+      });
+
+      after(function() {
+        countOccurrence = originalCountOccurrence;
+      });
 
       it('should return a number', function() {
         expect(countOccurrence([2,7,4,4,1,4], 4)).to.be.a('number');
@@ -997,11 +1128,15 @@
       });
 
       it('should use recursion by calling self', function () {
-        var originalCountOccurrence = countOccurrence;
-        countOccurrence = sinon.spy(countOccurrence);
         countOccurrence([2,7,4,4,1,4], 4);
         expect(countOccurrence.callCount).to.be.above(1);
-        countOccurrence = originalCountOccurrence;
+      });
+
+      it('should be invoked with two arguments', function() {
+        countOccurrence([2,7,4,4,1,4], 4);
+        countOccurrence.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -1009,14 +1144,25 @@
 
 
     describe('21. Recursive Map', function() {
-      var timesTwo, input;
+      var originalRMap, timesTwo, input, result;
+
+      before(function() {
+        originalRMap = rMap;
+        rMap = sinon.spy(rMap);
+        timesTwo = function(n) { return n * 2; };
+      });
 
       beforeEach(function() {
-        timesTwo = function(n) { return n * 2; };
         input = [1,2,3,4,5];
       });
-      // var timesTwo = function(n) { return n * 2; };
-      // var input3 = [1,2,3,4,5];
+
+      afterEach(function() {
+        rMap.reset();
+      });
+
+      after(function() {
+        rMap = originalRMap;
+      });
 
       it('should return an array', function() {
         expect(rMap(input, timesTwo)).to.be.an('array');
@@ -1025,32 +1171,36 @@
       it('should not use the native version of map', function() {
         // Spying on Array.prototype.map in testSupport.js
         rMap(input, timesTwo);
-        expect(Array.prototype.map.called).to.equal(false);
+        expect(Array.prototype.map.called).to.be.false;
       });
 
       it('should return new array without mutating the input array', function() {
-        // var input = [1,2,3,4,5];
-        var result = rMap(input, num => num);
+        result = rMap(input, num => num);
         expect(input).to.eql([1,2,3,4,5]);
+        expect(result).to.eql(input);
         expect(result).to.not.equal(input);
       });
 
       it('should apply a function to every value in an array', function() {
-        var doubledNumbers = rMap([1,2,3], timesTwo);
-        expect(doubledNumbers).to.eql([2,4,6]);
+        result = rMap([1,2,3], timesTwo);
+        expect(result).to.eql([2,4,6]);
       });
 
       it('should use recursion by calling self', function () {
-        var originalrMap = rMap;
-        rMap = sinon.spy(rMap);
         rMap([1,2,3,4], timesTwo);
         expect(rMap.callCount).to.be.above(1);
-        rMap = originalrMap;
+      });
+
+      it('should be invoked with two arguments', function() {
+        rMap([1,2,3,4], timesTwo);
+        rMap.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
 
-
+/*   CONTINUE REFACTORING BELOW FOR ARGUMENT RESTRICTION   */
 
     describe('22. Count key in object', function() {
       var input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};

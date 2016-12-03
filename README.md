@@ -1,12 +1,13 @@
 # Recursion
 
-#### **What is this?**
+### **What is this?**
 This is a repository of toy problems to be solved using recursion and JavaScript. While the concept of recursion may not be difficult to grasp, the only way to improve at thinking recursively is by practice. If you need practice, then maybe this repo is for you.
 
-#### **A few guidelines:**
+### **A few guidelines:**
 - Please refrain from sharing solutions. As crazy as it sounds, giving someone the answer doesn't help them. Instead, give them a question that encourages them to think differently.
 
-    > **Q:** Why does my function keep exceeding the call stack?\n
+    > **Q:** Why does my function keep exceeding the call stack?
+
     > **A:** What's your base case?
 
 - Don't be afraid to pseudocode your algorithm before writing actual code.
@@ -25,7 +26,7 @@ This is a repository of toy problems to be solved using recursion and JavaScript
 - Feel free to make pull requests or open issues regarding bugs or suggestions.
 - **`Watch`**, **`Star`**, and **`Fork`** this repo. You know you want to.
 
-#### **How to use this repo:**
+### **How to use this repo:**
 1. Fork this repo and clone it to your local machine
 2. Open `SpecRunner.html` in your web browser
 3. Code your solutions in `recursion.js`
@@ -69,20 +70,20 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 12. `***`Resume the initial invocation from step 1 where it left off
 12. Return out of the initial invocation
 
-`*`Every recursive call adds a new invocation to the stack on top of the previous invocation
-`**`in-between steps 6 and 7
-`***` in-between steps 3 and 4
+- `*`Every recursive call adds a new invocation to the stack on top of the previous invocation
+- `**`in-between steps 6 and 7
+- `***` in-between steps 3 and 4
 
 Due to the way the execution stack operates, it's as if each function invocation pauses in time when a recursive call is made. The function that pauses before a recursive call will resume once the recursive call completes. If you've seen the movie [Inception], this model may sound reminiscent to when the characters enter a person's dreams and time slowed. The difference is time doesn't actually slow with recursive invocations; rather, it's a matter of order of operations. If a new invocation enters the execution stack, that invocation must complete before the previous can continue and complete.
 
 
-#### Why use recursion?
+### Why use recursion?
 Recursion can be elegant, but it can also be dangerous. It some cases, recursion feels like a more natural and readable solution; in others, it ends up being contrived. In most cases, recursion can be avoided entirely and sometimes should in order to minimize the possibility of exceeding the call stack and crashing your app. But keep in mind that code readability is important. If a recursive solution reads more naturally, then it may be the best solution for the given problem.
 
 Recursion isn't unique to any one programming language. As a software engineer, you _will_ encounter recursion and it's important to understand what's happening and how to work with it. It's also important to understand why someone might use it. Recursion is often used when the depth of a thing is unknown or every element of a thing needs to be touched. For example, you might use recursion if you want to find all DOM elements with a specific class name. You may not know how deep the DOM goes and need to touch every element so that none are missed. The same can be said for traversing any structure where all possible paths need to be considered and investigated.
 
 
-#### Divide and Conquer
+### Divide and Conquer
 Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Think about traversing a tree. Each branch may have its own "children" branches. Since a child branch is just another branch, then we can recurse on each child. In other words, a tree is essentially made of many smaller trees.
 
 [inception]: <https://en.wikipedia.org/wiki/Inception>

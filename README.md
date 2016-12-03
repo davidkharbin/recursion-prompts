@@ -1,21 +1,29 @@
 # Recursion
----
+
 ##### **What is this?**
 This is a repository of toy problems to be solved using recursion and JavaScript. While the concept of recursion may not be difficult to grasp, the only way to improve at thinking recursively is by practice. If you need practice, then maybe this repo is for you.
 
 ##### **A few guidelines:**
 - Please refrain from sharing solutions. As crazy as it sounds, giving someone the answer doesn't help them. Instead, give them a question that encourages them to think differently.
+
     > **Q:** Why does my function keep exceeding the call stack?
     > **A:** What's your base case?
+
 - Don't be afraid to pseudocode your algorithm before writing actual code.
+
     > Pseudocode helps you focus on the algorithm instead of getting distracted by syntax.
+
 - This repo requires each function call itself recursively and pays no attention to whether inner recursive functions defined and called.
+
     > While both are valid uses of recursion, there are important lessons to learn by following the method this repo enforces. Defining inner functions and calling them recursively relies on side effects, while following the more pure approach requires an understanding of how values are passed through the call stack.
+
 - This repo restricts expanding the number of parameters a function accepts.
+
     > Expanding the number of parameters is a valid approach, but has been restricted here to emphasize certain lessons while learning recursion.
+
 - An attempt was made to order prompts by difficulty, but they don't have to be solved in any particular order.
 - Feel free to make pull requests or open issues regarding bugs or suggestions.
-- `Watch`, `Star`, and `Fork` this repo. You know you want to.
+- **`Watch`**, **`Star`**, and **`Fork`** this repo. You know you want to.
 
 ##### **How to use this repo:**
 1. Fork this repo and clone it to your local machine
@@ -29,8 +37,8 @@ This is a repository of toy problems to be solved using recursion and JavaScript
 > Recursion is when a function calls itself until it doesn't. --not helpful person
 
 Is it a true definition? Mostly. Recursion is when a function calls itself. A recursive function can call itself forever, but that's generally not preferred. It's often a good idea to include a condition in the function definition that allows it to stop calling itself. This condition is referred to as a **_base_** case. As a general rule, recursion shouldn't be utilized without an accompanying base case unless an infinite operation is desired. This leaves us with two fundamental conditions every recursive function should include:
-- A `base` case
-- A `recursive` case
+- A **`base`** case
+- A **`recursive`** case
 
 What does this all mean? Let's consider a silly example:
 ```sh
@@ -45,6 +53,7 @@ function stepsToZero(n) {
 }
 ```
 This function doesn't do anything meaningful, but hopefully it demonstrates the fundamental idea behind recursion. Simply put, recursion provides us a looping or repeating mechanism. It repeats an operation until a `base` condition is met. Let's step through an invocation of the above function to see how it evaluates.
+
 1. Invoke `stepsToZero(n)` where `n` is the number `2`
 2. Is 2 zero?
 3. No, print message to console that 2 is not zero

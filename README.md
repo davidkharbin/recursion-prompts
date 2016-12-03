@@ -1,12 +1,12 @@
 # Recursion
 
-##### **What is this?**
+#### **What is this?**
 This is a repository of toy problems to be solved using recursion and JavaScript. While the concept of recursion may not be difficult to grasp, the only way to improve at thinking recursively is by practice. If you need practice, then maybe this repo is for you.
 
-##### **A few guidelines:**
+#### **A few guidelines:**
 - Please refrain from sharing solutions. As crazy as it sounds, giving someone the answer doesn't help them. Instead, give them a question that encourages them to think differently.
 
-    > **Q:** Why does my function keep exceeding the call stack?
+    > **Q:** Why does my function keep exceeding the call stack?\n
     > **A:** What's your base case?
 
 - Don't be afraid to pseudocode your algorithm before writing actual code.
@@ -25,7 +25,7 @@ This is a repository of toy problems to be solved using recursion and JavaScript
 - Feel free to make pull requests or open issues regarding bugs or suggestions.
 - **`Watch`**, **`Star`**, and **`Fork`** this repo. You know you want to.
 
-##### **How to use this repo:**
+#### **How to use this repo:**
 1. Fork this repo and clone it to your local machine
 2. Open `SpecRunner.html` in your web browser
 3. Code your solutions in `recursion.js`
@@ -40,7 +40,7 @@ Is it a true definition? Mostly. Recursion is when a function calls itself. A re
 - A **`base`** case
 - A **`recursive`** case
 
-What does this all mean? Let's consider a silly example:
+_What does this all mean? Let's consider a silly example:_
 ```sh
 function stepsToZero(n) {
   if (n === 0) { // base case
@@ -68,6 +68,7 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 6. Return out of the invocation from step 4
 12. `***`Resume the initial invocation from step 1 where it left off
 12. Return out of the initial invocation
+
 `*`Every recursive call adds a new invocation to the stack on top of the previous invocation
 `**`in-between steps 6 and 7
 `***` in-between steps 3 and 4

@@ -36,7 +36,7 @@
         expect(factorial(-5)).to.be.null;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         factorial(4);
         expect(factorial.callCount).to.be.above(1);
       });
@@ -104,7 +104,7 @@
         expect(input).to.eql([1,2,3,4,5]);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         sum([1,2,3,4,5,6]);
         expect(sum.callCount).to.be.above(1);
       });
@@ -140,19 +140,19 @@
         expect(arraySum([[1],[[2]],3,4])).to.be.a('number');
       });
 
-      it('should return the sum of an array with nested arrays of non-negative integers', function() {
+      it('should return the sum of nested arrays containing non-negative integers', function() {
         expect(arraySum([[1],[2,3],[[4]],5])).to.equal(15);
         expect(arraySum([[12,[[34],[56]],78]])).to.equal(180);
         expect(arraySum([3,[0,[34,[7,[18]]]]])).to.equal(62);
       });
 
-      it('should return the sum of an array with nested arrays of negative integers', function() {
+      it('should return the sum of nested arrays containing negative integers', function() {
         expect(arraySum([[-1],[-2,-3],[[-4]],-5])).to.equal(-15);
         expect(arraySum([[-12,[[-34],[-56]],-78]])).to.equal(-180);
         expect(arraySum([-3,[0,[-34,[-7,[-18]]]]])).to.equal(-62);
       });
 
-      it('should return the sum of an array with nested arrays of mixed non-negative and negative integers', function() {
+      it('should return the sum of nested arrays containing both non-negative and negative integers', function() {
         expect(arraySum([[1],[-2,3],[[-4]],5,-6])).to.equal(-3);
         expect(arraySum([[-12,[[34],[-56]],78]])).to.equal(44);
         expect(arraySum([3,[0,[-34,[-7,[18]]]]])).to.equal(-20);
@@ -174,7 +174,7 @@
         expect(input).to.eql([[1],[[2]],3,4]);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         arraySum([[1],[[2]],3,4]);
         expect(arraySum.callCount).to.be.above(1);
       });
@@ -212,7 +212,7 @@
       });
 
       it("should not use modulo", function() {
-        var stringified = isEven.toString();
+        var stringified = originalIsEven.toString();
         expect(stringified).to.not.contain('%');
         expect(stringified).to.not.contain('modulo');
       });
@@ -232,7 +232,7 @@
         expect(isEven(-31)).to.be.false;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         isEven(8);
         expect(isEven.callCount).to.be.above(1);
       });
@@ -283,7 +283,7 @@
         expect(sumBelow(-11)).to.equal(-55);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         sumBelow(5);
         expect(sumBelow.callCount).to.be.above(1);
       });
@@ -342,7 +342,7 @@
         expect(range(-9,-4)).to.eql([-8,-7,-6,-5]);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         range(3,8);
         expect(range.callCount).to.be.above(1);
       });
@@ -379,7 +379,7 @@
       });
 
       it("should not use complex math", function() {
-        expect(exponent.toString()).to.not.contain('Math');
+        expect(originalExponent.toString()).to.not.contain('Math');
       });
 
       it('should compute exponent of non-negative integers', function() {
@@ -405,7 +405,7 @@
         expect(exponent(2,-5)).to.equal(0.03125);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         exponent(3,4);
         expect(exponent.callCount).to.be.above(1);
       });
@@ -476,7 +476,7 @@
         expect(powerOfTwo(270)).to.be.false;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         powerOfTwo(16);
         expect(powerOfTwo.callCount).to.be.above(1);
       });
@@ -519,11 +519,12 @@
       });
 
       it('should not use native reverse method', function() {
+        // Spying on Array.prototype.reverse in testSupport.js
         reverse('traf');
         expect(Array.prototype.reverse.called).to.be.false;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         reverse('orangutan');
         expect(reverse.callCount).to.be.above(1);
       });
@@ -581,7 +582,7 @@
         expect(palindrome('sAip puaki v iKaup Pias')).to.be.true;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         palindrome('racecar');
         expect(palindrome.callCount).to.be.above(1);
       });
@@ -619,10 +620,11 @@
       });
 
       it("should not use complex math", function() {
-        expect(modulo.toString()).to.not.contain('*');
-        expect(modulo.toString()).to.not.contain('/');
-        expect(modulo.toString()).to.not.contain('%');
-        expect(modulo.toString()).to.not.contain('Math');
+        var stringified = originalModulo.toString();
+        expect(stringified).to.not.contain('*');
+        expect(stringified).to.not.contain('/');
+        expect(stringified).to.not.contain('%');
+        expect(stringified).to.not.contain('Math');
       });
 
       it('should return the remainder of two integers', function() {
@@ -640,7 +642,7 @@
         expect(modulo(-4, 2)).to.equal(-4 % 2);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         modulo(5,2);
         expect(modulo.callCount).to.be.above(1);
       });
@@ -678,7 +680,7 @@
       });
 
       it("should not use complex math", function() {
-        var stringified = multiply.toString();
+        var stringified = originalMultiply.toString();
         expect(stringified).to.not.contain('*');
         expect(stringified).to.not.contain('/');
         expect(stringified).to.not.contain('%');
@@ -723,7 +725,7 @@
         // expect(multiply(453, 78)).to.equal(78 * 453);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         multiply(8,4);
         expect(multiply.callCount).to.be.above(1);
       });
@@ -761,10 +763,12 @@
       });
 
       it("should not use complex math", function() {
-        expect(divide.toString()).to.not.contain('*');
-        expect(divide.toString()).to.not.contain('/');
-        expect(divide.toString()).to.not.contain('%');
-        expect(divide.toString()).to.not.contain('Math');
+        var stringified = originalDivide.toString();
+        expect(stringified).to.not.contain('*');
+        expect(stringified).to.not.contain('/');
+        expect(stringified).to.not.contain('%');
+        expect(stringified).to.not.contain('Math');
+        expect(stringified).to.not.contain('modulo');
       });
 
       it('should return the quotient of two integers', function() {
@@ -777,7 +781,7 @@
         expect(divide(0, 0)).to.be.NaN;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         divide(17, 5);
         expect(divide.callCount).to.be.above(1);
       });
@@ -834,7 +838,7 @@
         // expect(gcd(0, -5)).to.be.null;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         gcd(17, 5);
         expect(gcd.callCount).to.be.above(1);
       });
@@ -881,7 +885,7 @@
         expect(compareStr('big dog', 'big dog')).to.be.true;
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         compareStr('house', 'houses');
         expect(compareStr.callCount).to.be.above(1);
       });
@@ -918,13 +922,12 @@
       });
 
       it('should return an array where each index is a letter of the string', function() {
-        expect(createArray('hello')).to.eql(['h','e','l','l','o']);
         expect(createArray('this is not a pipe')).to.eql(['t','h','i','s',' ','i','s',' ','n','o','t',' ','a',' ','p','i','p','e']);
         expect(createArray('hologram')).to.eql(['h','o','l','o','g','r','a','m']);
         expect(createArray('i')).to.eql(['i']);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         createArray('hello');
         expect(createArray.callCount).to.be.above(1);
       });
@@ -957,23 +960,21 @@
       });
 
       it('should return an array', function() {
-        expect(reverseArr([5,4,3,2,1])).to.be.an('array');
+        expect(reverseArr([3,2,1])).to.be.an('array');
       });
 
       it('should return array in reversed order', function() {
         expect(reverseArr([1,2,3,4,5])).to.eql([5,4,3,2,1]);
-        expect(reverseArr([5,4,3,2,1])).to.eql([1,2,3,4,5]);
-        expect(reverseArr([2,4,6,8])).to.eql([8,6,4,2]);
         expect(reverseArr([8,6,4,2])).to.eql([2,4,6,8]);
       });
 
-      it('should use recursion by calling self', function () {
-        reverseArr([5,4,3,2,1]);
+      it('should use recursion by calling self', function() {
+        reverseArr([3,2,1]);
         expect(reverseArr.callCount).to.be.above(1);
       });
 
       it('should be invoked with one argument', function() {
-        reverseArr([5,4,3,2,1]);
+        reverseArr([5,4,3]);
         reverseArr.args.forEach(arg => {
           expect(arg).to.have.length(1);
         });
@@ -1013,13 +1014,13 @@
         expect(buildList(true, 3)).to.eql([true,true,true]);
       });
 
-      it('should use recursion by calling self', function () {
-        buildList(2,7);
+      it('should use recursion by calling self', function() {
+        buildList(2,4);
         expect(buildList.callCount).to.be.above(1);
       });
 
       it('should be invoked with two arguments', function() {
-        buildList('five',5);
+        buildList('five',3);
         buildList.args.forEach(arg => {
           expect(arg).to.have.length(2);
         });
@@ -1057,24 +1058,24 @@
       });
 
       it('should output "Fizz" for multiples of three', function() {
-        actualResult = fizzBuzz(3)[2];
-        expectedResult = 'Fizz';
-        expect(actualResult).to.equal(expectedResult);
+        actualResult = fizzBuzz(3);
+        expectedResult = ['1','2','Fizz'];
+        expect(actualResult).to.eql(expectedResult);
       });
 
       it('should output "Buzz" for multiples of five', function() {
-        actualResult = fizzBuzz(5)[4];
-        expectedResult = 'Buzz';
-        expect(actualResult).to.equal(expectedResult);
+        actualResult = fizzBuzz(12);
+        expectedResult = ['1','2','Fizz','4','Buzz','Fizz','7','8','Fizz','Buzz','11','Fizz'];
+        expect(actualResult).to.eql(expectedResult);
       });
 
       it('should output "FizzBuzz" for multiples of both three and five', function() {
-        actualResult = fizzBuzz(15)[14];
-        expectedResult = 'FizzBuzz';
-        expect(actualResult).to.equal(expectedResult);
+        actualResult = fizzBuzz(15);
+        expectedResult = ['1','2','Fizz','4','Buzz','Fizz','7','8','Fizz','Buzz','11','Fizz','13','14','FizzBuzz'];
+        expect(actualResult).to.eql(expectedResult);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         fizzBuzz(5);
         expect(fizzBuzz.callCount).to.be.above(1);
       });
@@ -1115,14 +1116,14 @@
         expect(countOccurrence([2,7,4,4,1,4], 4)).to.equal(3);
         expect(countOccurrence([2,'banana',4,4,1,'banana'], 'banana')).to.equal(2);
         expect(countOccurrence([undefined,7,undefined,4,1,4], undefined)).to.equal(2);
-        expect(countOccurrence(['',7,null,0,'0',false], 0)).to.equal(1);
-        expect(countOccurrence(['',7,null,0,'0',false], false)).to.equal(1);
+        expect(countOccurrence(['',null,0,'0',false], 0)).to.equal(1);
+        expect(countOccurrence(['',null,0,'false',false], false)).to.equal(1);
         expect(countOccurrence(['',7,null,0,'0',false], null)).to.equal(1);
         expect(countOccurrence(['',7,null,0,'0',false], '')).to.equal(1);
         // expect(countOccurrence(['',7,null,0,NaN,'0',false], NaN)).to.equal(1);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         countOccurrence([2,7,4,4,1,4], 4);
         expect(countOccurrence.callCount).to.be.above(1);
       });
@@ -1174,7 +1175,7 @@
         expect(input).to.eql([1,2,3,4,5]);
         // should deeply equal input
         expect(result).to.eql(input);
-        // should not be same array in memoary as input
+        // should not be same array in memory
         expect(result).to.not.equal(input);
       });
 
@@ -1183,7 +1184,7 @@
         expect(result).to.eql([2,4,6]);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         rMap([1,2,3,4], timesTwo);
         expect(rMap.callCount).to.be.above(1);
       });
@@ -1205,7 +1206,7 @@
       before(function() {
         originalCountKeysInObj = countKeysInObj;
         countKeysInObj = sinon.spy(countKeysInObj);
-        input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        input = {e:{x:'y'},t:{r:{e:'r'},p:{y:'r'}},y:'e'};
       });
 
       afterEach(function() {
@@ -1229,7 +1230,7 @@
         expect(countKeysInObj(input, 'p')).to.equal(1);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         countKeysInObj(input, 'e');
         expect(countKeysInObj.callCount).to.be.above(1);
       });
@@ -1251,7 +1252,7 @@
       before(function() {
         originalCountValuesInObj = countValuesInObj;
         countValuesInObj = sinon.spy(countValuesInObj);
-        input = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+        input = {e:{x:'y'},t:{r:{e:'r'},p:{y:'r'}},y:'e'};
       });
 
       afterEach(function() {
@@ -1264,8 +1265,6 @@
 
       it('should return a number', function() {
         expect(countValuesInObj(input, 'r')).to.be.a('number');
-        expect(countValuesInObj(input, 'e')).to.be.a('number');
-        expect(countValuesInObj(input, 'p')).to.be.a('number');
       });
 
       it('should return the count of the occurrences of the property', function() {
@@ -1277,7 +1276,7 @@
         expect(countValuesInObj(input, 'p')).to.equal(0);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         countValuesInObj(input, 'r');
         expect(countValuesInObj.callCount).to.be.above(1);
       });
@@ -1294,19 +1293,11 @@
 
 
     describe('24. Replace keys in object', function() {
-      var originalReplaceKeysInObj, input, output, inspect;
+      var originalReplaceKeysInObj, input, output;
 
       before(function() {
         originalReplaceKeysInObj = replaceKeysInObj;
         replaceKeysInObj = sinon.spy(replaceKeysInObj);
-        inspect = o => {
-          let c = 0;
-          for (let k in o) {
-            typeof o[k] === 'object' && (c += inspect(o[k]));
-            c++;
-          }
-          return c;
-        };
       });
 
       beforeEach(function() {
@@ -1346,10 +1337,12 @@
 
         expect(input.t.r).to.be.an('object');
         expect(input.t.r).to.have.all.keys('f');
+        expect(input.t.r.f).to.be.a('string');
         expect(input.t.r.f).to.equal('r');
 
         expect(input.t.p).to.be.an('object');
         expect(input.t.p).to.have.all.keys('y');
+        expect(input.t.p.y).to.be.a('string');
         expect(input.t.p.y).to.equal('r');
 
         expect(input.y).to.be.a('string');
@@ -1359,13 +1352,13 @@
         expect(input.t.r).to.not.have.ownProperty('e');
       });
 
-      it('should return object with same number of keys', function () {
-        expect(inspect(input)).to.equal(8);
+      it('should return object with same number of keys', function() {
+        expect(analyze(input)).to.equal(8);
         output = replaceKeysInObj(input, 'e', 'f');
-        expect(inspect(output)).to.equal(8);
+        expect(analyze(output)).to.equal(8);
       });
 
-      it('should use recursion by calling self', function () {
+      it('should use recursion by calling self', function() {
         replaceKeysInObj(input, 'r', 'a');
         expect(replaceKeysInObj.callCount).to.be.above(1);
       });
@@ -1379,9 +1372,23 @@
 
     });
 
-/*   CONTINUE REFACTORING BELOW FOR ARGUMENT RESTRICTION   */
+
 
     describe('25. First n Fibonacci', function() {
+      var originalFibonacci;
+
+      before(function() {
+        originalFibonacci = fibonacci;
+        fibonacci = sinon.spy(fibonacci);
+      });
+
+      afterEach(function() {
+        fibonacci.reset();
+      });
+
+      after(function() {
+        fibonacci = originalFibonacci;
+      });
 
       it('should return an array', function() {
         expect(fibonacci(5)).to.be.an('array');
@@ -1393,7 +1400,7 @@
         expect(fibonacci(3)).to.eql([0,1,1,2]);
         expect(fibonacci(4)).to.eql([0,1,1,2,3]);
         expect(fibonacci(5)).to.eql([0,1,1,2,3,5]);
-        expect(fibonacci(12)).to.eql([0,1,1,2,3,5,8,13,21,34,55,89,144]);
+        expect(fibonacci(8)).to.eql([0,1,1,2,3,5,8,13,21]);
       });
 
       it('should return null for zero and negative integers', function() {
@@ -1401,12 +1408,16 @@
         expect(fibonacci(-7)).to.be.null;
       });
 
-      it('should use recursion by calling self', function () {
-        var originalFibonacci = fibonacci;
-        fibonacci = sinon.spy(fibonacci);
+      it('should use recursion by calling self', function() {
         fibonacci(5);
         expect(fibonacci.callCount).to.be.above(1);
-        fibonacci = originalFibonacci;
+      });
+
+      it('should be invoked with one argument', function() {
+        fibonacci(5);
+        fibonacci.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1414,19 +1425,33 @@
 
 
     describe('26. Return nth Fibonacci', function() {
+      var originalNthFibo;
+
+      before(function() {
+        originalNthFibo = nthFibo;
+        nthFibo = sinon.spy(nthFibo);
+      });
+
+      afterEach(function() {
+        nthFibo.reset();
+      });
+
+      after(function() {
+        nthFibo = originalNthFibo;
+      });
 
       it('should return a number', function() {
         expect(nthFibo(5)).to.be.a('number');
       });
 
-      it('should return the nth Fibonacci number', function() {
+      it('should return the nth nthFibo number', function() {
         expect(nthFibo(0)).to.equal(0);
         expect(nthFibo(1)).to.equal(1);
         expect(nthFibo(2)).to.equal(1);
         expect(nthFibo(3)).to.equal(2);
         expect(nthFibo(4)).to.equal(3);
         expect(nthFibo(5)).to.equal(5);
-        expect(nthFibo(12)).to.equal(144);
+        expect(nthFibo(8)).to.equal(21);
       });
 
       it('should return null for negative integers', function() {
@@ -1434,12 +1459,16 @@
         expect(nthFibo(-7)).to.be.null;
       });
 
-      it('should use recursion by calling self', function () {
-        var originalNthFibo = nthFibo;
-        nthFibo = sinon.spy(nthFibo);
+      it('should use recursion by calling self', function() {
         nthFibo(5);
         expect(nthFibo.callCount).to.be.above(1);
-        nthFibo = originalNthFibo;
+      });
+
+      it('should be invoked with one argument', function() {
+        nthFibo(5);
+        nthFibo.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1447,22 +1476,39 @@
 
 
     describe('27. Capitalize words in array', function() {
+      var originalCapitalizeWords;
+
+      before(function() {
+        originalCapitalizeWords = capitalizeWords;
+        capitalizeWords = sinon.spy(capitalizeWords);
+      });
+
+      afterEach(function() {
+        capitalizeWords.reset();
+      });
+
+      after(function() {
+        capitalizeWords = originalCapitalizeWords;
+      });
 
       it('should return an array', function() {
-        expect(capitalizeWords(['i','am','learning','recursion'])).to.be.an('array');
+        expect(capitalizeWords(['recursion'])).to.be.an('array');
       });
 
       it('should capitalize all words in array', function() {
-        expect(capitalizeWords(['i','am','learning','recursion'])).to.eql(['I', 'AM', 'LEARNING', 'RECURSION']);
         expect(capitalizeWords(["ceci","n'est","pas","une","pipe"])).to.eql(["CECI", "N'EST", "PAS", "UNE", "PIPE"]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalCapitalizeWords = capitalizeWords;
-        capitalizeWords = sinon.spy(capitalizeWords);
-        capitalizeWords(["ceci","n'est","pas","une","pipe"]);
+      it('should use recursion by calling self', function() {
+        capitalizeWords(['i','am','learning','recursion']);
         expect(capitalizeWords.callCount).to.be.above(1);
-        capitalizeWords = originalCapitalizeWords;
+      });
+
+      it('should be invoked with one argument', function() {
+        capitalizeWords(['you','got','this']);
+        capitalizeWords.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1470,22 +1516,39 @@
 
 
     describe('28. Capitalize first letter of words in array', function() {
+      var originalCapitalizeFirst;
+
+      before(function() {
+        originalCapitalizeFirst = capitalizeFirst;
+        capitalizeFirst = sinon.spy(capitalizeFirst);
+      });
+
+      afterEach(function() {
+        capitalizeFirst.reset();
+      });
+
+      after(function() {
+        capitalizeFirst = originalCapitalizeFirst;
+      });
 
       it('should return an array', function() {
-        expect(capitalizeFirst(['i','am','learning','recursion'])).to.be.an('array');
+        expect(capitalizeFirst(['recursion'])).to.be.an('array');
       });
 
       it('should capitalize first letter of each word in array', function() {
-        expect(capitalizeFirst(['i','am','learning','recursion'])).to.eql(['I', 'Am', 'Learning', 'Recursion']);
         expect(capitalizeFirst(["ceci","n'est","pas","une","pipe"])).to.eql(["Ceci", "N'est", "Pas", "Une", "Pipe"]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalCapitalizeFirst = capitalizeFirst;
-        capitalizeFirst = sinon.spy(capitalizeFirst);
+      it('should use recursion by calling self', function() {
         capitalizeFirst(["ceci","n'est","pas","une","pipe"]);
         expect(capitalizeFirst.callCount).to.be.above(1);
-        capitalizeFirst = originalCapitalizeFirst;
+      });
+
+      it('should be invoked with one argument', function() {
+        capitalizeFirst(['you','got','this']);
+        capitalizeFirst.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1493,28 +1556,46 @@
 
 
     describe('29. Sum even numbers in nested objects', function() {
-      var obj = {
-        a: 2,
-        b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-        c: {c: {c: 2}, cc: 'ball', ccc: 5},
-        d: 1,
-        e: {e: {e: 2}, ee: 'car'}
-      };
+      var originalNestedEvenSum, input;
+
+      before(function() {
+        originalNestedEvenSum = nestedEvenSum;
+        nestedEvenSum = sinon.spy(nestedEvenSum);
+        input = {
+          a: 2,
+          b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+          c: {c: {c: 2}, cc: 'ball', ccc: 5},
+          d: 1,
+          e: {e: {e: 2}, ee: 'car'}
+        };
+      });
+
+      afterEach(function() {
+        nestedEvenSum.reset();
+      });
+
+      after(function() {
+        nestedEvenSum = originalNestedEvenSum;
+      });
 
       it('should return a number', function() {
-        expect(nestedEvenSum(obj)).to.be.a('number');
+        expect(nestedEvenSum(input)).to.be.a('number');
       });
 
       it('should sum even numbers', function() {
-        expect(nestedEvenSum(obj)).to.equal(10);
+        expect(nestedEvenSum(input)).to.equal(10);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalNestedEvenSum = nestedEvenSum;
-        nestedEvenSum = sinon.spy(nestedEvenSum);
-        nestedEvenSum(obj);
+      it('should use recursion by calling self', function() {
+        nestedEvenSum(input);
         expect(nestedEvenSum.callCount).to.be.above(1);
-        nestedEvenSum = originalNestedEvenSum;
+      });
+
+      it('should be invoked with one argument', function() {
+        nestedEvenSum(input);
+        nestedEvenSum.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1522,24 +1603,42 @@
 
 
     describe('30. Flatten nested arrays', function() {
+      var originalFlatten;
+
+      before(function() {
+        originalFlatten = flatten;
+        flatten = sinon.spy(flatten);
+      });
+
+      afterEach(function() {
+        flatten.reset();
+      });
+
+      after(function() {
+        flatten = originalFlatten;
+      });
 
       it('should return an array', function() {
-        expect(flatten([1,[2],[3,[[4]]],5])).to.be.an('array');
+        expect(flatten([1,[2],[[3]]])).to.be.an('array');
       });
 
       it('should return flattened array', function() {
-        expect(flatten([[1],[2,3],[[4]],5,6])).to.eql([1,2,3,4,5,6]);
-        expect(flatten([[12,[[34],[56]],78]])).to.eql([12,34,56,78]);
+        expect(flatten([[1],[2,3],[[4]],5])).to.eql([1,2,3,4,5]);
         expect(flatten([3,[0,[34,[7,[18]]]]])).to.eql([3,0,34,7,18]);
-        expect(flatten([[1],[2,[],3],[],[[4]],5,6])).to.eql([1,2,3,4,5,6]);
+        expect(flatten([[[[[3],0],34],7],18])).to.eql([3,0,34,7,18]);
+        expect(flatten([[1],[2,[],3],[],[[4]],5])).to.eql([1,2,3,4,5]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalFlatten = flatten;
-        flatten = sinon.spy(flatten);
-        flatten([3,[0,[34,[7,[18]]]]]);
+      it('should use recursion by calling self', function() {
+        flatten([3,[0,[34]]]);
         expect(flatten.callCount).to.be.above(1);
-        flatten = originalFlatten;
+      });
+
+      it('should be invoked with one argument', function() {
+        flatten([3,[0,[34]]]);
+        flatten.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1547,6 +1646,20 @@
 
 
     describe('31. Tally letters in string', function() {
+      var originalLetterTally;
+
+      before(function() {
+        originalLetterTally = letterTally;
+        letterTally = sinon.spy(letterTally);
+      });
+
+      afterEach(function() {
+        letterTally.reset();
+      });
+
+      after(function() {
+        letterTally = originalLetterTally;
+      });
 
       it('should return an object', function() {
         expect(letterTally('orangutan')).to.be.an('object');
@@ -1561,18 +1674,22 @@
         expect(output.a).to.equal(1);
       });
 
-      it('should return object containing the number of keys corresponding to unique letters', function () {
+      it('should return object containing the number of keys corresponding to unique letters', function() {
         var output = letterTally('mississippi');
-        var countKeys = Object.keys(output).length;
-        expect(countKeys).to.equal(4);
+        var keyCount = Object.keys(output).length;
+        expect(keyCount).to.equal(4);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalLetterTally = letterTally;
-        letterTally = sinon.spy(letterTally);
+      it('should use recursion by calling self', function() {
         letterTally('invasion');
         expect(letterTally.callCount).to.be.above(1);
-        letterTally = originalLetterTally;
+      });
+
+      it('should be invoked with at most two arguments', function() {
+        letterTally('invasion');
+        letterTally.args.forEach(arg => {
+          expect(arg).to.have.length.of.at.most(2);
+        });
       });
 
     });
@@ -1580,11 +1697,31 @@
 
 
     describe('32. Eliminate consecutive duplicates', function() {
-      var input1 = [1,2,2,3,4,4,5,5,5];
-      var input2 = [1,2,2,3,4,4,2,5,5,5,4,4];
+      var originalCompress, input1, input2;
+
+      before(function() {
+        originalCompress = compress;
+        compress = sinon.spy(compress);
+        input1 = [1,2,2,3,4,4,5,5,5];
+        input2 = [1,2,2,3,4,4,2,5,5,5,4,4];
+      });
+
+      afterEach(function() {
+        compress.reset();
+      });
+
+      after(function() {
+        compress = originalCompress;
+      });
 
       it('should return an array', function() {
         expect(compress(input1)).to.be.an('array');
+      });
+
+      it('should not mutate the input array', function() {
+        var result = compress(input1);
+        expect(input1).to.eql([1,2,2,3,4,4,5,5,5]);
+        expect(input1).to.not.equal(result);
       });
 
       it('should remove consecutive duplicates', function() {
@@ -1592,12 +1729,16 @@
         expect(compress(input2)).to.eql([1,2,3,4,2,5,4]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalCompress = compress;
-        compress = sinon.spy(compress);
-        compress(input2);
+      it('should use recursion by calling self', function() {
+        compress(input1);
         expect(compress.callCount).to.be.above(1);
-        compress = originalCompress;
+      });
+
+      it('should be invoked with one argument', function() {
+        compress(input1);
+        compress.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1605,23 +1746,42 @@
 
 
     describe('33. Augment each element in nested arrays', function() {
+      var originalAugmentElements;
+
+      before(function() {
+        originalAugmentElements = augmentElements;
+        augmentElements = sinon.spy(augmentElements);
+      });
+
+      afterEach(function() {
+        augmentElements.reset();
+      });
+
+      after(function() {
+        augmentElements = originalAugmentElements;
+      });
 
       it('should return an array', function() {
-        expect(augmentElements([[],[3],[7]], 5)).to.be.an('array');
+        expect(augmentElements([[],[3]], 5)).to.be.an('array');
       });
 
       it('should augment each element with given value', function() {
         expect(augmentElements([[],[3],[7]], 5)).to.eql([[5],[3,5],[7,5]]);
         expect(augmentElements([[],[3],[7]], null)).to.eql([[null],[3,null],[7,null]]);
         expect(augmentElements([[],[3],[7]], '')).to.eql([[''],[3,''],[7,'']]);
+        expect(augmentElements([[],[3],[7]], false)).to.eql([[false],[3,false],[7,false]]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalAugElements = augmentElements;
-        augmentElements = sinon.spy(augmentElements);
-        augmentElements([[],[3],[7]], 5);
+      it('should use recursion by calling self', function() {
+        augmentElements([[],[3]], 5);
         expect(augmentElements.callCount).to.be.above(1);
-        augmentElements = originalAugElements;
+      });
+
+      it('should be invoked with two arguments', function() {
+        augmentElements([[],[3]], 5);
+        augmentElements.args.forEach(arg => {
+          expect(arg).to.have.length(2);
+        });
       });
 
     });
@@ -1629,11 +1789,32 @@
 
 
     describe('34. Minimize zeroes', function() {
-      var input1 = [2,0,0,0,1,4];
-      var input2 = [2,0,0,0,1,0,0,4];
+      var originalMinimizeZeroes, input1, input2;
+
+      before(function() {
+        originalMinimizeZeroes = minimizeZeroes;
+        minimizeZeroes = sinon.spy(minimizeZeroes);
+      });
+
+      beforeEach(function() {
+        input1 = [2,0,0,0,1,4];
+        input2 = [2,0,0,0,1,0,0,4];
+      });
+
+      afterEach(function() {
+        minimizeZeroes.reset();
+      });
+
+      after(function() {
+        minimizeZeroes = originalMinimizeZeroes;
+      });
 
       it('should return an array', function() {
         expect(minimizeZeroes(input1)).to.be.an('array');
+      });
+
+      it('should not mutate the input array', function() {
+        expect(minimizeZeroes(input2)).to.not.equal(input2);
       });
 
       it('should remove excess zeroes', function() {
@@ -1641,12 +1822,16 @@
         expect(minimizeZeroes(input2)).to.eql([2,0,1,0,4]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalMinZeroes = minimizeZeroes;
-        minimizeZeroes = sinon.spy(minimizeZeroes);
+      it('should use recursion by calling self', function() {
         minimizeZeroes(input1);
         expect(minimizeZeroes.callCount).to.be.above(1);
-        minimizeZeroes = originalMinZeroes;
+      });
+
+      it('should be invoked with one argument', function() {
+        minimizeZeroes(input2);
+        minimizeZeroes.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1654,11 +1839,32 @@
 
 
     describe('35. Alternate sign', function() {
-      var input1 = [2,7,8,3,1,4];
-      var input2 = [-2,-7,8,3,-1,4];
+      var originalAlternateSign, input1, input2;
+
+      before(function() {
+        originalAlternateSign = alternateSign;
+        alternateSign = sinon.spy(alternateSign);
+      });
+
+      beforeEach(function() {
+        input1 = [2,7,8,3,1,4];
+        input2 = [-2,-7,8,3,-1,4];
+      });
+
+      afterEach(function() {
+        alternateSign.reset();
+      });
+
+      after(function() {
+        alternateSign = originalAlternateSign;
+      });
 
       it('should return an array', function() {
         expect(alternateSign(input1)).to.be.an('array');
+      });
+
+      it('should not mutate the input array', function() {
+        expect(alternateSign(input2)).to.not.equal(input2);
       });
 
       it('should remove excess zeroes', function() {
@@ -1666,12 +1872,16 @@
         expect(alternateSign(input2)).to.eql([2,-7,8,-3,1,-4]);
       });
 
-      it('should use recursion by calling self', function () {
-        var originalAltSign = alternateSign;
-        alternateSign = sinon.spy(alternateSign);
+      it('should use recursion by calling self', function() {
         alternateSign(input1);
         expect(alternateSign.callCount).to.be.above(1);
-        alternateSign = originalAltSign;
+      });
+
+      it('should be invoked with one argument', function() {
+        alternateSign(input2);
+        alternateSign.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
@@ -1679,34 +1889,48 @@
 
 
     describe('36. Convert numbers to text', function() {
+      var originalNumToText, input1, input2;
+
+      before(function() {
+        originalNumToText = numToText;
+        numToText = sinon.spy(numToText);
+      });
+
+      beforeEach(function() {
+        input1 = '5 dogs and 6 ponies';
+        input2 = 'Give me 8 dollars';
+      });
+
+      afterEach(function() {
+        numToText.reset();
+      });
+
+      after(function() {
+        numToText = originalNumToText;
+      });
 
       it('should return a string', function() {
-        expect(numToText("I have 5 dogs and 6 ponies")).to.be.a('string');
+        expect(numToText(input1)).to.be.a('string');
       });
 
       it('should convert single digits to their word equivalent', function() {
-        expect(numToText("I have 5 dogs and 6 ponies")).to.equal("I have five dogs and six ponies");
-        expect(numToText("It takes 3 men to screw in 1 light bulb")).to.equal("It takes three men to screw in one light bulb");
+        expect(numToText(input1)).to.equal('five dogs and six ponies');
+        expect(numToText(input2)).to.equal('Give me eight dollars');
       });
 
-      it('should use recursion by calling self', function () {
-        var originalNumToText = numToText;
-        numToText = sinon.spy(numToText);
-        numToText("I have 5 dogs and 6 ponies");
+      it('should use recursion by calling self', function() {
+        numToText(input2);
         expect(numToText.callCount).to.be.above(1);
-        numToText = originalNumToText;
+      });
+
+      it('should be invoked with one argument', function() {
+        numToText(input2);
+        numToText.args.forEach(arg => {
+          expect(arg).to.have.length(1);
+        });
       });
 
     });
 
   });
-
-  // function checkForNativeMethods(runFunction) {
-  //   it('should not use the native version of map', function() {
-  //     // These spies are set up in testSupport.js
-  //     runFunction();
-  //     expect(Array.prototype.map.called).to.be.false;
-  //   });
-  // }
-
 }());

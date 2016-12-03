@@ -58,22 +58,18 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 1. Invoke `stepsToZero(n)` where `n` is the number `2`
 2. Is 2 zero?
 3. No, print message to console that 2 is not zero
-4. `*`Invoke `stepsToZero(n-1)` where `n-1` evaluates to `1`
+4. Invoke `stepsToZero(n-1)` where `n-1` evaluates to `1`
+> Every recursive call adds a new invocation to the stack on top of the previous invocation
 5. Is 1 zero?
 6. No, print message that 1 is not zero
-7. `*`Invoke `stepsToZero(n-1)` where `n-1` evaluates to `0`
+7. Invoke `stepsToZero(n-1)` where `n-1` evaluates to `0`
 8. Is 0 zero?
 9. Yes, print message that reached zero
 10. Return out of the current invocation
-6. `**`Resume the invocation from step 4 where it left off
+6. Resume the invocation from step 4 where it left off (in-between steps 6 and 7)
 6. Return out of the invocation from step 4
-12. `***`Resume the initial invocation from step 1 where it left off
+12. Resume the initial invocation from step 1 where it left off (in-between steps 3 and 4)
 12. Return out of the initial invocation
-
-
-`*`Every recursive call adds a new invocation to the stack on top of the previous invocation
-`**`in-between steps 6 and 7
-`***` in-between steps 3 and 4
 
 Due to the way the execution stack operates, it's as if each function invocation pauses in time when a recursive call is made. The function that pauses before a recursive call will resume once the recursive call completes. If you've seen the movie [Inception], this model may sound reminiscent to when the characters enter a person's dreams and time slowed. The difference is time doesn't actually slow with recursive invocations; rather, it's a matter of order of operations. If a new invocation enters the execution stack, that invocation must complete before the previous can continue and complete.
 

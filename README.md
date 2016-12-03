@@ -70,9 +70,10 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 12. `***`Resume the initial invocation from step 1 where it left off
 12. Return out of the initial invocation
 
-- `*`Every recursive call adds a new invocation to the stack on top of the previous invocation
-- `**`in-between steps 6 and 7
-- `***` in-between steps 3 and 4
+
+`*`Every recursive call adds a new invocation to the stack on top of the previous invocation
+`**`in-between steps 6 and 7
+`***` in-between steps 3 and 4
 
 Due to the way the execution stack operates, it's as if each function invocation pauses in time when a recursive call is made. The function that pauses before a recursive call will resume once the recursive call completes. If you've seen the movie [Inception], this model may sound reminiscent to when the characters enter a person's dreams and time slowed. The difference is time doesn't actually slow with recursive invocations; rather, it's a matter of order of operations. If a new invocation enters the execution stack, that invocation must complete before the previous can continue and complete.
 

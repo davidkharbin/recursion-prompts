@@ -60,7 +60,7 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 3. No, print message to console that 2 is not zero
 4. Invoke `stepsToZero(n-1)` where `n-1` evaluates to `1`
 
-> Every recursive call adds a new invocation to the stack on top of the previous invocation
+    > Every recursive call adds a new invocation to the stack on top of the previous invocation
 
 5. Is 1 zero?
 6. No, print message that 1 is not zero

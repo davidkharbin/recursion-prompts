@@ -41,7 +41,7 @@ Is it a true definition? Mostly. Recursion is when a function calls itself. A re
 - A **`base`** case
 - A **`recursive`** case
 
-_What does this all mean? Let's consider a silly example:_
+_What does this all mean?_ Let's consider a silly example:
 ```sh
 function stepsToZero(n) {
   if (n === 0) { // base case
@@ -83,6 +83,6 @@ Recursion isn't unique to any one programming language. As a software engineer, 
 
 
 ### Divide and Conquer
-Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Think about traversing a tree. Each branch may have its own "children" branches. Since a child branch is just another branch, then we can recurse on each child. In other words, a tree is essentially made of many smaller trees.
+Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Consider traversing a tree structure. Each branch may have its own "children" branches. And every branch is essentually just another tree which means, as long as child trees are found, we can recurse on each child.
 
 [inception]: <https://en.wikipedia.org/wiki/Inception>

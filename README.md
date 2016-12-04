@@ -1,4 +1,4 @@
-# Recursion
+# Recursion Prompts
 
 ### **What is this?**
 This is a repository of toy problems to be solved using recursion and JavaScript. While the concept of recursion may not be difficult to grasp, the only way to improve at thinking recursively is by practice. If you need practice, then maybe this repo is for you.

@@ -14,7 +14,7 @@ This is a repository of toy problems to be solved using recursion and JavaScript
 
     > Pseudocode helps you focus on the algorithm instead of getting distracted by syntax.
 
-- This repo requires each function call itself recursively and pays no attention to whether inner recursive functions defined and called.
+- This repo requires each function call itself recursively and pays no attention to whether inner recursive functions are defined and called.
 
     > While both are valid uses of recursion, there are important lessons to learn by following the method this repo enforces. Defining inner functions and calling them recursively relies on side effects, while following the more pure approach requires an understanding of how values are passed through the call stack.
 
@@ -44,10 +44,10 @@ Is it a true definition? Mostly. Recursion is when a function calls itself. A re
 _What does this all mean?_ Let's consider a silly example:
 ```sh
 function stepsToZero(n) {
-  if (n === 0) { // base case
+  if (!n === 0) { /* base case */
     console.log('Reached zero');
     return;
-  } else { // recursive case
+  } else { /* recursive case */
     console.log(n + ' is not zero');
     return stepsToZero(n-1);
   }
@@ -83,6 +83,6 @@ Recursion isn't unique to any one programming language. As a software engineer, 
 
 
 ### Divide and Conquer
-Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Consider traversing a tree structure. Each branch may have its own "children" branches. And every branch is essentually just another tree which means, as long as child trees are found, we can recurse on each child.
+Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Consider traversing a tree structure. Each branch may have its own "children" branches. Every branch is essentually just another tree which means, as long as child trees are found, we can recurse on each child.
 
 [inception]: <https://en.wikipedia.org/wiki/Inception>

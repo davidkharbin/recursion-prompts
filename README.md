@@ -42,7 +42,7 @@ Is it a true definition? Mostly. Recursion is when a function calls itself. A re
 - A **`recursive`** case
 
 _What does this all mean?_ Let's consider a silly example:
-```sh
+```javascript
 function stepsToZero(n) {
   if (n === 0) { /* base case */
     return 'Reached zero';

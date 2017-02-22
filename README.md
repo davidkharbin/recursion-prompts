@@ -48,7 +48,7 @@ function stepsToZero(n) {
     console.log('Reached zero');
     return;
   } else { /* recursive case */
-    console.log(n + ' is not zero');
+    console.log(n, 'is not zero');
     return stepsToZero(n-1);
   }
 }

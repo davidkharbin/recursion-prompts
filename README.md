@@ -44,7 +44,7 @@ Is it a true definition? Mostly. Recursion is when a function calls itself. A re
 _What does this all mean?_ Let's consider a silly example:
 ```sh
 function stepsToZero(n) {
-  if (!n === 0) { /* base case */
+  if (n === 0) { /* base case */
     console.log('Reached zero');
     return;
   } else { /* recursive case */

@@ -65,8 +65,8 @@ This function doesn't do anything meaningful, but hopefully it demonstrates the 
 6. No, print message that 1 is not zero
 7. Invoke `stepsToZero(n-1)` where `n-1` evaluates to `0`
 8. Is 0 zero?
-9. Yes, print message that reached zero
-10. Return out of the current invocation
+9. Yes, return message that reached zero
+10. The above return pops the current invocation off the stack
 6. Resume the invocation from step 4 where it left off (in-between steps 6 and 7)
 6. Return out of the invocation from step 4
 12. Resume the initial invocation from step 1 where it left off (in-between steps 3 and 4)

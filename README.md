@@ -84,6 +84,6 @@ Recursion isn't unique to any one programming language. As a software engineer, 
 
 
 ### Divide and Conquer
-Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Consider traversing a tree structure. Each branch may have its own "children" branches. Every branch is essentually just another tree which means, as long as child trees are found, we can recurse on each child.
+Recursion is often used in _divide and conquer_ algorithms where problems can be divided into similar subproblems and conquered individually. Consider traversing a tree structure. Each branch may have its own "children" branches. Every branch is essentially just another tree which means, as long as child trees are found, we can recurse on each child.
 
 [inception]: <https://en.wikipedia.org/wiki/Inception>

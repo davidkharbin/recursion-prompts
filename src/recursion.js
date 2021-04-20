@@ -35,13 +35,13 @@ var sum = function(array) {
 var arraySum = function(arr) {
   var sum = 0;
 
-  for ( var i = 0; i < arr.length; i ++) {
-    if ( Array.isArray(arr[i]) ) {
-      sum += arraySum(arr[i])
+  arr.forEach(function(item) {
+    if ( Array.isArray(item) ) {
+      sum += arraySum(item);
     } else {
-      sum += arr[i];
+      sum += item;
     }
-  }
+  });
 
   return sum;
 };
@@ -149,7 +149,21 @@ var reverse = function(str) {
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
+var palindrome = function(string){
+  string = string.toLowerCase().split(' ').join('');
+  var firstChar = string[0];
+  var lastChar = string[string.length - 1];
+  var middleChars = string.substring(1, string.length - 1);
+
+  if ( string.length === 1 || string.length === 0 ){
+    return true;
+  }
+
+  if ( firstChar !== lastChar ){
+    return false;
+  }
+
+  return palindrome(middleChars);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -158,7 +172,17 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (y === 0) { return NaN; }
+
+  if (x < 0) { return -modulo(-x, y); }
+
+  if (y < 0) { return modulo(x, -y); }
+
+  if (x < y) { return x; }
+
+  return modulo(x - y, y);
 };
+
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.

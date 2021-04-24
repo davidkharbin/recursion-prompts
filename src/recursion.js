@@ -213,7 +213,7 @@ var divide = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
   if (x <= 0 || y <= 0) { return null; }
-  if (x % x === 0 && y % x === 0) { return x; }
+  if (x === y) { return x; }
 
   if ( x > y ) {
     return gcd(x - y, y)
@@ -227,6 +227,15 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if ( str1.length === 0 && str2.length === 0 ) {
+    return true;
+  }
+
+  if ( str1[0] === str2[0] ) {
+    return true && compareStr(str1.slice(1), str2.slice(1));
+  } else {
+  return false;
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter

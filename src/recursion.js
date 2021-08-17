@@ -241,7 +241,7 @@ let compareStr = function(str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 let createArray = function(str) {
-  if (str.length === 1) {return [str[0]];}
+  if (str.length === 1) { return [str[0]]; }
 
   let arr = createArray(str.substring(1));
   arr.unshift(str[0]);
@@ -250,7 +250,13 @@ let createArray = function(str) {
 };
 
 // 17. Reverse the order of an array
-let reverseArr = function(array) {
+let reverseArr = function(arr) {
+  if (arr.length === 1) { return arr; }
+
+  let list = reverseArr(arr.slice(1));
+  list.push(arr[0])
+
+  return list;
 };
 
 // 18. Create a new array with a given value and length.

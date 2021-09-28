@@ -263,6 +263,9 @@ let reverseArr = function(arr) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 let buildList = function(value, length) {
+  if (length === 1) return [value];
+
+  return [value].concat(buildList(value, length - 1))
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
@@ -344,18 +347,18 @@ let nestedEvenSum = function(obj) {
 
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-let flatten = function(arr){
+let flatten = function(arr) {
   let results = [];
 
-	for ( let i = 0; i < arr.length; i++ ){
-		if ( Array.isArray(arr[i]) ){
-			results = results.concat(flatten(arr[i]));
-		} else {
-			results.push(arr[i]);
-		}
-	}
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      results = results.concat(flatten(arr[i]));
+    } else {
+      results.push(arr[i]);
+    }
+  }
 
-	return results;
+  return results;
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
@@ -368,7 +371,7 @@ let letterTally = function(str, tally) {
   tally[letter] ? tally[letter]++ : tally[letter] = 1;
 
   letterTally(str.slice(1), tally);
-	return tally;
+  return tally;
 };
 
 // 32. Eliminate consecutive duplicates in a list. If the list contains repeated

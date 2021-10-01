@@ -275,11 +275,17 @@ let buildList = function(value, length) {
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 let fizzBuzz = function(n) {
 
-  if ( n === 0 ) return [];
-  if ( n % 3 === 0 && n % 5 === 0 ) return ['FizzBuzz'].concat(fizzBuzz(n - 1));
-  if ( n % 3 === 0 )                return ['Fizz'].concat(fizzBuzz(n - 1));
-  if ( n % 5 === 0 )                return ['Buzz'].concat(fizzBuzz(n - 1));
-
+  if ( n === 1 ) return ['1'];
+  if ( n % 3 === 0  && n % 5 === 0 ) return fizzBuzz(n - 1).concat('FizzBuzz');
+  if ( n % 3 === 0 )                 return fizzBuzz(n - 1).concat('Fizz');
+  if ( n % 5 === 0 )                 return fizzBuzz(n - 1).concat('Buzz');
+  return fizzBuzz(n - 1).concat([`${n}`]);
+/**
+ * (5) => return fuzzBuzz(4).concat(['Buzz']) => ['1', '2', 'Fizz'].concat['Buzz'] = ['1', '2', 'Fizz', 'Buzz]
+ *                       => fizzBuzz(3).concat(['Fizz']) => ['1', '2'].concat['Fizz'] = ['1', '2', 'Fizz']
+ *                                  => fizzBuzz(2).concat(['2']) => ['1'].concat['2'] = ['1', '2']
+ *                                             =>fizzBuzz(1).concat(['1']) =>['1']
+ */
 };
 
 // 20. Count the occurrence of a value in a list.

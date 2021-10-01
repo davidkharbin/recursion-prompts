@@ -332,10 +332,9 @@ let nthFibo = function(n) {
 // let words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 let capitalizeWords = function(array) {
-  array[0] = array[0].toUpperCase();
-  if ( array.length === 1 ) return [].concat(array[0]);
+  if ( array.length === 1 ) return array[0].toUpperCase();
 
-  return capitalizeWords(array.slice(1));
+  return [array[0].toUpperCase()].concat(capitalizeWords(array.slice(1)));
 
 };
 

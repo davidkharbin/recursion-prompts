@@ -275,23 +275,24 @@ let buildList = function(value, length) {
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 let fizzBuzz = function(n) {
 
-  if ( n === 1 ) return ['1'];
-  if ( n % 3 === 0  && n % 5 === 0 ) return fizzBuzz(n - 1).concat('FizzBuzz');
-  if ( n % 3 === 0 )                 return fizzBuzz(n - 1).concat('Fizz');
-  if ( n % 5 === 0 )                 return fizzBuzz(n - 1).concat('Buzz');
+  if (n === 1) return ['1'];
+  if (n % 3 === 0 && n % 5 === 0) return fizzBuzz(n - 1).concat('FizzBuzz');
+  if (n % 3 === 0) return fizzBuzz(n - 1).concat('Fizz');
+  if (n % 5 === 0) return fizzBuzz(n - 1).concat('Buzz');
   return fizzBuzz(n - 1).concat([`${n}`]);
-/**
- * (5) => return fuzzBuzz(4).concat(['Buzz']) => ['1', '2', 'Fizz'].concat['Buzz'] = ['1', '2', 'Fizz', 'Buzz]
- *                       => fizzBuzz(3).concat(['Fizz']) => ['1', '2'].concat['Fizz'] = ['1', '2', 'Fizz']
- *                                  => fizzBuzz(2).concat(['2']) => ['1'].concat['2'] = ['1', '2']
- *                                             =>fizzBuzz(1).concat(['1']) =>['1']
- */
 };
 
 // 20. Count the occurrence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 let countOccurrence = function(array, value) {
+  if (array.length === 0) return 0;
+  let first = array.shift();
+  if (first === value) {
+    return 1 + countOccurrence(array, value);
+  } else {
+    return 0 + countOccurrence(array, value);
+  }
 };
 
 // 21. Write a recursive version of map.
@@ -332,8 +333,8 @@ let fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 let nthFibo = function(n) {
-  if ( n < 0 ) return null;
-  if ( n < 2 ) return n;
+  if (n < 0) return null;
+  if (n < 2) return n;
 
   return nthFibo(n - 1) + nthFibo(n - 2)
 };
@@ -343,7 +344,7 @@ let nthFibo = function(n) {
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 let capitalizeWords = function(array) {
 
-  if ( array.length === 1 ) return [array[0].toUpperCase()];
+  if (array.length === 1) return [array[0].toUpperCase()];
 
   return [array[0].toUpperCase()].concat(capitalizeWords(array.slice(1)));
 
@@ -352,12 +353,12 @@ let capitalizeWords = function(array) {
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
 let capitalizeFirst = function(array) {
-  if ( array.length === 1 ) return [array[0].charAt(0).toUpperCase() + array[0].slice(1)];
+  if (array.length === 1) return [array[0].charAt(0).toUpperCase() + array[0].slice(1)];
 
   return [(array[0] = array[0].charAt(0).toUpperCase() + array[0].slice(1)).concat(capitalizeFirst(array.slice(1)))]
 };
 
-console.log(capitalizeFirst(["ceci","n'est","pas","une","pipe"]))
+console.log(capitalizeFirst(["ceci", "n'est", "pas", "une", "pipe"]))
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
 // let obj1 = {

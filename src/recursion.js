@@ -310,6 +310,7 @@ let rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 let countKeysInObj = function(obj, key) {
+
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -330,6 +331,12 @@ let replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 let fibonacci = function(n) {
+  if (n <= 0) return null 
+  if (n === 1) return [0, 1]
+
+  let arr = fibonacci(n - 1)
+  arr.push(arr[arr.length - 1] + arr[arr.length - 2])
+  return arr
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.

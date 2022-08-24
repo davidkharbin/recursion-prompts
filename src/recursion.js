@@ -317,7 +317,23 @@ let countKeysInObj = function(obj, key) {
 // let obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
-let countValuesInObj = function(obj, value) {
+let countValuesInObj = function(obj, match) {
+  // counter
+  let count = 0;
+
+  // iterate over the object 
+  for (let key in obj) {
+    // if the value is an object
+    if (typeof obj[key] === 'object') {
+      // add AND recurse ??
+      count += countValuesInObj(obj[key], match)
+      // else if the value is the match
+    } else if (obj[key] === match) {
+      // increment the count
+      count++
+    }
+  }
+  return count
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
@@ -331,7 +347,7 @@ let replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 let fibonacci = function(n) {
-  if (n <= 0) return null 
+  if (n <= 0) return null
   if (n === 1) return [0, 1]
 
   let arr = fibonacci(n - 1)
